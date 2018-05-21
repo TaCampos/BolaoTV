@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		762A5F3520B344B50011E11A /* SectionHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762A5F3420B344B50011E11A /* SectionHeaderCollectionReusableView.swift */; };
+		762A5F3720B349AE0011E11A /* BetsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762A5F3620B349AE0011E11A /* BetsCollectionViewCell.swift */; };
 		764306D620B10FCE00007390 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764306D520B10FCE00007390 /* AppDelegate.swift */; };
 		764306DB20B10FCE00007390 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 764306D920B10FCE00007390 /* Main.storyboard */; };
 		764306DD20B10FD000007390 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 764306DC20B10FD000007390 /* Assets.xcassets */; };
@@ -23,10 +25,11 @@
 		7643070220B11AB500007390 /* GameOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7643070120B11AB500007390 /* GameOverviewViewController.swift */; };
 		7643070520B1204D00007390 /* GamesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7643070420B1204D00007390 /* GamesCollectionViewCell.swift */; };
 		7643070720B1F02900007390 /* FocusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7643070620B1F02900007390 /* FocusableView.swift */; };
-		7643070920B1F09E00007390 /* AddBetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7643070820B1F09E00007390 /* AddBetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		762A5F3420B344B50011E11A /* SectionHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		762A5F3620B349AE0011E11A /* BetsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsCollectionViewCell.swift; sourceTree = "<group>"; };
 		764306D220B10FCE00007390 /* Bolao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bolao.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		764306D520B10FCE00007390 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		764306DA20B10FCE00007390 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -45,7 +48,6 @@
 		7643070120B11AB500007390 /* GameOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverviewViewController.swift; sourceTree = "<group>"; };
 		7643070420B1204D00007390 /* GamesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesCollectionViewCell.swift; sourceTree = "<group>"; };
 		7643070620B1F02900007390 /* FocusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusableView.swift; sourceTree = "<group>"; };
-		7643070820B1F09E00007390 /* AddBetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBetViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,7 +138,6 @@
 			isa = PBXGroup;
 			children = (
 				7643070120B11AB500007390 /* GameOverviewViewController.swift */,
-				7643070820B1F09E00007390 /* AddBetViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -168,6 +169,8 @@
 			isa = PBXGroup;
 			children = (
 				7643070420B1204D00007390 /* GamesCollectionViewCell.swift */,
+				762A5F3420B344B50011E11A /* SectionHeaderCollectionReusableView.swift */,
+				762A5F3620B349AE0011E11A /* BetsCollectionViewCell.swift */,
 			);
 			path = CellsAndSections;
 			sourceTree = "<group>";
@@ -250,10 +253,11 @@
 				764306F820B1110000007390 /* Match.swift in Sources */,
 				764306F120B110BD00007390 /* User.swift in Sources */,
 				7643070720B1F02900007390 /* FocusableView.swift in Sources */,
-				7643070920B1F09E00007390 /* AddBetViewController.swift in Sources */,
 				7643070020B1114D00007390 /* ScoreRules.swift in Sources */,
 				764306F520B110E900007390 /* Championship.swift in Sources */,
 				764306F320B110D300007390 /* League.swift in Sources */,
+				762A5F3520B344B50011E11A /* SectionHeaderCollectionReusableView.swift in Sources */,
+				762A5F3720B349AE0011E11A /* BetsCollectionViewCell.swift in Sources */,
 				764306FC20B1112200007390 /* Team.swift in Sources */,
 				764306D620B10FCE00007390 /* AppDelegate.swift in Sources */,
 				764306FE20B1113600007390 /* Bet.swift in Sources */,

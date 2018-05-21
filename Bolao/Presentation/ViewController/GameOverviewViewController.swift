@@ -31,7 +31,7 @@ class GameOverviewViewController: UIViewController {
     @IBOutlet weak var favoriteButton: UIButton!
 
     @IBOutlet weak var gamesCollectionView: UICollectionView!
-
+    @IBOutlet weak var betsCollectionView: UICollectionView!
 
     // MARK: Functions
     override func viewDidLoad() {
@@ -57,40 +57,92 @@ class GameOverviewViewController: UIViewController {
 
 extension GameOverviewViewController: UICollectionViewDelegate, UICollectionViewDataSource {
 
+
+    // MARK: Games Collectio View
+
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+
+        if collectionView == gamesCollectionView {
+            return 8
+        }
+        else if collectionView == betsCollectionView {
+            return 1
+        }
+
+        return 0
+    }
+
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+
+        if collectionView == gamesCollectionView {
+            return 3
+        } else if collectionView == betsCollectionView {
+            return 20
+        }
+
+        return 0
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = gamesCollectionView.dequeueReusableCell(withReuseIdentifier: "gameCell", for: indexPath) as! GamesCollectionViewCell
+        if collectionView == gamesCollectionView{
 
-        cell.layer.cornerRadius = 5
-        cell.clipsToBounds = true
+            let cell = gamesCollectionView.dequeueReusableCell(withReuseIdentifier: "gameCell", for: indexPath) as! GamesCollectionViewCell
 
-        return cell
+            cell.layer.cornerRadius = 5
+            cell.clipsToBounds = true
+
+            return cell
+        }
+        else if collectionView == betsCollectionView {
+            let cell = betsCollectionView.dequeueReusableCell(withReuseIdentifier: "betCell", for: indexPath) as! BetsCollectionViewCell
+
+            return cell
+        }
+
+        return UICollectionViewCell()
     }
 
     func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
 
-        if let previousIndexPath = context.previouslyFocusedIndexPath,
-            let cell = collectionView.cellForItem(at: previousIndexPath) {
-            cell.contentView.layer.shadowOpacity = 0
-            cell.contentView.layer.shadowOffset = CGSize(width: 0, height: 0)
-            cell.contentView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
-            cell.transform = CGAffineTransform(scaleX: 1.0 ,y: 1.0)
-        }
+        if collectionView == gamesCollectionView {
+            if let previousIndexPath = context.previouslyFocusedIndexPath,
+                let cell = collectionView.cellForItem(at: previousIndexPath) {
+                cell.contentView.layer.shadowOpacity = 0
+                cell.contentView.layer.shadowOffset = CGSize(width: 0, height: 0)
+                cell.contentView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
+                cell.transform = CGAffineTransform(scaleX: 1.0 ,y: 1.0)
+            }
 
-        if let indexPath = context.nextFocusedIndexPath,
-            let cell = collectionView.cellForItem(at: indexPath) {
-            cell.contentView.layer.shadowOpacity = 0.6
-            cell.contentView.layer.shadowOffset = CGSize(width: 0, height: 10)
-            cell.contentView.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 0.35)
-            cell.transform = CGAffineTransform(scaleX: 1.2 ,y: 1.2)
-            collectionView.scrollToItem(at: indexPath, at: [.centeredHorizontally, .centeredVertically], animated: true)
+            if let indexPath = context.nextFocusedIndexPath,
+                let cell = collectionView.cellForItem(at: indexPath) {
+                cell.contentView.layer.shadowOpacity = 0.6
+                cell.contentView.layer.shadowOffset = CGSize(width: 0, height: 10)
+                cell.contentView.backgroundColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.5)
+                cell.transform = CGAffineTransform(scaleX: 1.2 ,y: 1.2)
+                collectionView.scrollToItem(at: indexPath, at: [.centeredHorizontally, .centeredVertically], animated: true)
 
-            
+
+            }
         }
     }
+
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+
+        if collectionView == gamesCollectionView {
+            let header = gamesCollectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "sectionHeader", for: indexPath) as! SectionHeaderCollectionReusableView
+
+            header.gameDateLabel.text = "14\nJUN"
+
+            return header
+        }
+
+        return UICollectionReusableView()
+    }
+
+
+    // MARK: Bet Collection View
+
+
 }
 
 
