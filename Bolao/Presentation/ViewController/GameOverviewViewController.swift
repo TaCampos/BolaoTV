@@ -54,7 +54,8 @@ class GameOverviewViewController: UIViewController {
         self.favoriteButton.clipsToBounds = true
     }
 
-    func attributedString(day: String, month: String) -> NSAttributedString? {
+    // Attributed String to header Label
+    func attributedStringForDate(day: String, month: String) -> NSAttributedString? {
 
         // day Part
         let dayTextFont = UIFont.systemFont(ofSize: 35, weight: .bold)
@@ -123,6 +124,7 @@ extension GameOverviewViewController: UICollectionViewDelegate, UICollectionView
         return UICollectionViewCell()
     }
 
+    // Collection View Focus
     func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
 
         if collectionView == gamesCollectionView {
@@ -141,18 +143,17 @@ extension GameOverviewViewController: UICollectionViewDelegate, UICollectionView
                 cell.contentView.backgroundColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.5)
                 cell.transform = CGAffineTransform(scaleX: 1.2 ,y: 1.2)
                 collectionView.scrollToItem(at: indexPath, at: [.centeredHorizontally, .centeredVertically], animated: true)
-
-
             }
         }
     }
 
+    // collection view header
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
 
         if collectionView == gamesCollectionView {
             let header = gamesCollectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "sectionHeader", for: indexPath) as! SectionHeaderCollectionReusableView
 
-            let dateString = attributedString(day: "14", month: "JUN")
+            let dateString = attributedStringForDate(day: "14", month: "JUN")
             header.gameDateLabel.attributedText = dateString
 
             return header
@@ -160,10 +161,6 @@ extension GameOverviewViewController: UICollectionViewDelegate, UICollectionView
 
         return UICollectionReusableView()
     }
-
-
-    // MARK: Bet Collection View
-
 
 }
 

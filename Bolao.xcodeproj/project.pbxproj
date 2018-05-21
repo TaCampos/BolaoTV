@@ -25,9 +25,13 @@
 		7643070220B11AB500007390 /* GameOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7643070120B11AB500007390 /* GameOverviewViewController.swift */; };
 		7643070520B1204D00007390 /* GamesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7643070420B1204D00007390 /* GamesCollectionViewCell.swift */; };
 		7643070720B1F02900007390 /* FocusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7643070620B1F02900007390 /* FocusableView.swift */; };
+		9F055B41B224D5DA44239D7B /* Pods_Bolao.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9424014D9D2E2BFEF32849 /* Pods_Bolao.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		14152B2F8B846FC77F3DAD82 /* Pods-Bolao.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bolao.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bolao/Pods-Bolao.debug.xcconfig"; sourceTree = "<group>"; };
+		1D9424014D9D2E2BFEF32849 /* Pods_Bolao.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bolao.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2ABDD449AE3D875BD18E3880 /* Pods-Bolao.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bolao.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bolao/Pods-Bolao.release.xcconfig"; sourceTree = "<group>"; };
 		762A5F3420B344B50011E11A /* SectionHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		762A5F3620B349AE0011E11A /* BetsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsCollectionViewCell.swift; sourceTree = "<group>"; };
 		764306D220B10FCE00007390 /* Bolao.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bolao.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -55,17 +59,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F055B41B224D5DA44239D7B /* Pods_Bolao.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		422B90B382CD89A8A73B25E8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1D9424014D9D2E2BFEF32849 /* Pods_Bolao.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		559C68EF36188DB6F6C523E5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				14152B2F8B846FC77F3DAD82 /* Pods-Bolao.debug.xcconfig */,
+				2ABDD449AE3D875BD18E3880 /* Pods-Bolao.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		764306C920B10FCE00007390 = {
 			isa = PBXGroup;
 			children = (
 				764306D420B10FCE00007390 /* Bolao */,
 				764306D320B10FCE00007390 /* Products */,
+				559C68EF36188DB6F6C523E5 /* Pods */,
+				422B90B382CD89A8A73B25E8 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -182,9 +206,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 764306E120B10FD000007390 /* Build configuration list for PBXNativeTarget "Bolao" */;
 			buildPhases = (
+				C3AFDCB24573028650FB4141 /* [CP] Check Pods Manifest.lock */,
 				764306CE20B10FCE00007390 /* Sources */,
 				764306CF20B10FCE00007390 /* Frameworks */,
 				764306D020B10FCE00007390 /* Resources */,
+				4FB869F6ABF588836A3C39B5 /* [CP] Embed Pods Frameworks */,
+				4C2B9C540888A4954730DD3E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -239,6 +266,60 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		4C2B9C540888A4954730DD3E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bolao/Pods-Bolao-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4FB869F6ABF588836A3C39B5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Bolao/Pods-Bolao-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Bolao/Pods-Bolao-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C3AFDCB24573028650FB4141 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Bolao-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		764306CE20B10FCE00007390 /* Sources */ = {
@@ -392,16 +473,14 @@
 		};
 		764306E220B10FD000007390 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 14152B2F8B846FC77F3DAD82 /* Pods-Bolao.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X6426J5XFC;
 				INFOPLIST_FILE = Bolao/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TamaraCampos.Bolao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -411,16 +490,14 @@
 		};
 		764306E320B10FD000007390 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2ABDD449AE3D875BD18E3880 /* Pods-Bolao.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X6426J5XFC;
 				INFOPLIST_FILE = Bolao/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TamaraCampos.Bolao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
