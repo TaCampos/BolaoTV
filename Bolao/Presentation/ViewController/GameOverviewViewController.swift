@@ -53,6 +53,27 @@ class GameOverviewViewController: UIViewController {
         self.favoriteButton.layer.cornerRadius = 8
         self.favoriteButton.clipsToBounds = true
     }
+
+    func attributedString(day: String, month: String) -> NSAttributedString? {
+
+        // day Part
+        let dayTextFont = UIFont.systemFont(ofSize: 35, weight: .bold)
+        let dayTextAttributes = [NSAttributedStringKey.font: dayTextFont, NSAttributedStringKey.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)] as [NSAttributedStringKey : Any]
+
+        let dateText = NSMutableAttributedString(string: day, attributes: dayTextAttributes)
+
+        // month Part
+
+        let monthTextFont = UIFont.systemFont(ofSize: 23, weight: .regular)
+        let monthTextAttributes = [NSAttributedStringKey.font: monthTextFont, NSAttributedStringKey.foregroundColor: #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)] as [NSAttributedStringKey : Any]
+
+        let monthText = NSMutableAttributedString(string: "\n" + month, attributes: monthTextAttributes)
+
+        // concatenate
+        dateText.append(monthText)
+
+        return dateText
+    }
 }
 
 extension GameOverviewViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -131,7 +152,8 @@ extension GameOverviewViewController: UICollectionViewDelegate, UICollectionView
         if collectionView == gamesCollectionView {
             let header = gamesCollectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "sectionHeader", for: indexPath) as! SectionHeaderCollectionReusableView
 
-            header.gameDateLabel.text = "14\nJUN"
+            let dateString = attributedString(day: "14", month: "JUN")
+            header.gameDateLabel.attributedText = dateString
 
             return header
         }
