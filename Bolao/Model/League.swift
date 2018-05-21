@@ -8,7 +8,7 @@
 
 import UIKit
 
-class League: NSObject {
+class League: Codable {
 
     private(set) var id: Int64
     private(set) var name: String
@@ -19,6 +19,26 @@ class League: NSObject {
     private(set) var admin: User
     private(set) var users: [User]
 
+    enum CodingKeys: String, CodingKey {
+        case name = "name"
+        case id = "id"
+        case championship = "championship"
+        case scoreRules = "scoreRules"
+        case admin = "admin"
+        case users = "users"
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        name = try values.decode(String.self, forKey: .name)
+        id = try values.decode(Int64.self, forKey: .id)
+        championship = try values.decode(Championship.self, forKey: .championship)
+        scoreRules = try values.decode(ScoreRules.self, forKey: .scoreRules)
+        admin = try values.decode(User.self, forKey: .admin)
+        users = try values.decode([User].self, forKey: .users)
+        
+    }
+    
     init(id: Int64, name: String, championship: Championship, scoreRules: ScoreRules, admin: User, users: [User]) {
         self.id = id
         self.name = name
