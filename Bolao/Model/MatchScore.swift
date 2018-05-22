@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MatchScore: NSObject {
+class MatchScore: Codable {
 
     private(set) var id: Int64
     private(set) var firstTeamScore: Int
@@ -18,6 +18,28 @@ class MatchScore: NSObject {
     private(set) var firstTeamScoreAuthors: [String]?
     private(set) var secondTeamScoreAuthors: [String]?
 
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case firstTeamScore = "firstTeamScore"
+        case secondTeamScore = "secondTeamScore"
+        case firstTeamPenaltiesScore = "firstTeamPenaltiesScore"
+        case secondTeamPenaltiesScore = "secondTeamPenaltiesScore"
+        case firstTeamScoreAuthors = "firstTeamScoreAuthors"
+        case secondTeamScoreAuthors = "secondTeamScoreAuthors"
+        
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decode(Int64.self, forKey: .id)
+        firstTeamScore = try values.decode(Int.self, forKey: .firstTeamScore)
+        secondTeamScore = try values.decode(Int.self, forKey: .secondTeamScore)
+        firstTeamPenaltiesScore = try values.decode(Int?.self, forKey: .firstTeamPenaltiesScore)
+        secondTeamPenaltiesScore = try values.decode(Int?.self, forKey: .secondTeamPenaltiesScore)
+        firstTeamScoreAuthors = try values.decode([String]?.self, forKey: .firstTeamScoreAuthors)
+        secondTeamScoreAuthors = try values.decode([String]?.self, forKey: .secondTeamScoreAuthors)
+    }
+    
     init(id: Int64, firstTeamScore: Int, secondTeamScore: Int) {
         self.id = id
         self.firstTeamScore = firstTeamScore

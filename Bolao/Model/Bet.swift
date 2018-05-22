@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Bet: NSObject {
+class Bet: Codable {
 
     private(set) var id: Int64
     private(set) var multiplier: Int
@@ -18,6 +18,23 @@ class Bet: NSObject {
     private(set) var match: Match
     private(set) var betScore: MatchScore
 
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case match = "match"
+        case betScore = "betScore"
+        case multiplier = "multiplier"
+        case user = "user"
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decode(Int64.self, forKey: .id)
+        match = try values.decode(Match.self, forKey: .match)
+        betScore = try values.decode(MatchScore.self, forKey: .betScore)
+        multiplier = try values.decode(Int.self, forKey: .multiplier)
+        user = try values.decode(User.self, forKey: .user)
+    }
+    
     init(id: Int64, multiplier: Int, user: User, match: Match, betScore: MatchScore) {
         self.id = id
         self.multiplier = multiplier

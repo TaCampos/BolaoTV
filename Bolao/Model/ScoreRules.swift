@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ScoreRules: NSObject {
+class ScoreRules: Codable {
 
     private(set) var id: Int64
     private(set) var pointsCorrectWinner: Int
@@ -20,6 +20,29 @@ class ScoreRules: NSObject {
 
     private(set) var validTeams: [Team]?
 
+    enum CodingKeys: String, CodingKey {
+        case id = "id"
+        case pointsCorrectWinner = "pointsCorrectWinner"
+        case pointsFirstTeamGoals = "pointsFirstTeamGoals"
+        case pointsSecondTeamGoals = "pointsSecondTeamGoals"
+        case pointsGoalsDifference = "pointsGoalsDifference"
+        case pointsExactResult = "pointsExactResult"
+        case unlikelyResultMultiplier = "unlikelyResultMultiplier"
+        case validTeams = "validTeams"
+    }
+    
+    required init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        id = try values.decode(Int64.self, forKey: .id)
+        pointsCorrectWinner = try values.decode(Int.self, forKey: .pointsCorrectWinner)
+        pointsFirstTeamGoals = try values.decode(Int.self, forKey: .pointsFirstTeamGoals)
+        pointsSecondTeamGoals = try values.decode(Int.self, forKey: .pointsSecondTeamGoals)
+        pointsGoalsDifference = try values.decode(Int.self, forKey: .pointsGoalsDifference)
+        pointsExactResult = try values.decode(Int.self, forKey: .pointsExactResult)
+        unlikelyResultMultiplier = try values.decode(Bool.self, forKey: .unlikelyResultMultiplier)
+        validTeams = try values.decode([Team]?.self, forKey: .validTeams)
+    }
+    
     init(id: Int64, pointsCorrectWinner: Int, pointsFirstTeamGoals: Int, pointsSecondTeamGoals: Int, pointsGoalsDifference: Int, pointsExactResult: Int, unlikelyResultMultiplier: Bool) {
         self.id = id
         self.pointsCorrectWinner = pointsCorrectWinner
