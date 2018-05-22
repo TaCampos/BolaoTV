@@ -56,7 +56,7 @@ class GameOverviewViewController: UIViewController {
         self.betsCollectionView.clipsToBounds = true
     }
 
-    // Attributed String to header Label
+    // Attributed String to header Label - day bigger than month
     func attributedStringForDate(day: String, month: String) -> NSAttributedString? {
 
         // day Part
