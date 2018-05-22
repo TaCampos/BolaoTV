@@ -28,7 +28,6 @@ class GameOverviewViewController: UIViewController {
     @IBOutlet weak var gameTime: UILabel!
 
     @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var favoriteButton: UIButton!
 
     @IBOutlet weak var gamesCollectionView: UICollectionView!
     @IBOutlet weak var betsCollectionView: UICollectionView!
@@ -37,21 +36,24 @@ class GameOverviewViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
         setUpLayout()
     }
 
     func setUpLayout() {
-        self.firstTimeView.layer.cornerRadius = 25
+        self.firstTimeView.layer.cornerRadius = 20
         self.firstTimeView.clipsToBounds = true
 
-        self.secondTimeView.layer.cornerRadius = 25
+        self.secondTimeView.layer.cornerRadius = 20
         self.secondTimeView.clipsToBounds = true
 
         self.addButton.layer.cornerRadius = 8
         self.addButton.clipsToBounds = true
 
-        self.favoriteButton.layer.cornerRadius = 8
-        self.favoriteButton.clipsToBounds = true
+        self.betsCollectionView.layer.cornerRadius = 10
+        self.betsCollectionView.clipsToBounds = true
     }
 
     // Attributed String to header Label
@@ -110,13 +112,16 @@ extension GameOverviewViewController: UICollectionViewDelegate, UICollectionView
 
             let cell = gamesCollectionView.dequeueReusableCell(withReuseIdentifier: "gameCell", for: indexPath) as! GamesCollectionViewCell
 
-            cell.layer.cornerRadius = 5
+            cell.layer.cornerRadius = 8
             cell.clipsToBounds = true
 
             return cell
         }
         else if collectionView == betsCollectionView {
             let cell = betsCollectionView.dequeueReusableCell(withReuseIdentifier: "betCell", for: indexPath) as! BetsCollectionViewCell
+
+            cell.layer.cornerRadius = 8
+            cell.clipsToBounds = true
 
             return cell
         }
@@ -132,7 +137,7 @@ extension GameOverviewViewController: UICollectionViewDelegate, UICollectionView
                 let cell = collectionView.cellForItem(at: previousIndexPath) {
                 cell.contentView.layer.shadowOpacity = 0
                 cell.contentView.layer.shadowOffset = CGSize(width: 0, height: 0)
-                cell.contentView.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
+                cell.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
                 cell.transform = CGAffineTransform(scaleX: 1.0 ,y: 1.0)
             }
 
@@ -140,8 +145,27 @@ extension GameOverviewViewController: UICollectionViewDelegate, UICollectionView
                 let cell = collectionView.cellForItem(at: indexPath) {
                 cell.contentView.layer.shadowOpacity = 0.6
                 cell.contentView.layer.shadowOffset = CGSize(width: 0, height: 10)
-                cell.contentView.backgroundColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.5)
+                cell.backgroundColor =  #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.5)
                 cell.transform = CGAffineTransform(scaleX: 1.2 ,y: 1.2)
+                collectionView.scrollToItem(at: indexPath, at: [.centeredHorizontally, .centeredVertically], animated: true)
+            }
+        }
+
+        if collectionView == betsCollectionView {
+            if let previousIndexPath = context.previouslyFocusedIndexPath,
+                let cell = collectionView.cellForItem(at: previousIndexPath) {
+                cell.contentView.layer.shadowOpacity = 0
+                cell.contentView.layer.shadowOffset = CGSize(width: 0, height: 0)
+                cell.backgroundColor = .clear
+                cell.transform = CGAffineTransform(scaleX: 1.0 ,y: 1.0)
+            }
+
+            if let indexPath = context.nextFocusedIndexPath,
+                let cell = collectionView.cellForItem(at: indexPath) {
+                cell.contentView.layer.shadowOpacity = 0.6
+                cell.contentView.layer.shadowOffset = CGSize(width: 0, height: 10)
+                cell.backgroundColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.6)
+                cell.transform = CGAffineTransform(scaleX: 1.1 ,y: 1.1)
                 collectionView.scrollToItem(at: indexPath, at: [.centeredHorizontally, .centeredVertically], animated: true)
             }
         }
