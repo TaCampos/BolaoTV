@@ -7,5 +7,6 @@ target 'Bolao' do
 
   # Pods for Bolao
   pod 'Alamofire', '~> 4.7'
+  pod 'TvOSScribble', '~> 0.0.1'
 
 end

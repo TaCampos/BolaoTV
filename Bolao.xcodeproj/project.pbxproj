@@ -26,6 +26,7 @@
 		7643070220B11AB500007390 /* GameOverviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7643070120B11AB500007390 /* GameOverviewViewController.swift */; };
 		7643070520B1204D00007390 /* GamesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7643070420B1204D00007390 /* GamesCollectionViewCell.swift */; };
 		7643070720B1F02900007390 /* FocusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7643070620B1F02900007390 /* FocusableView.swift */; };
+		76DAE2CC20B7019300E5E2C2 /* AutoCompleteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DAE2CB20B7019300E5E2C2 /* AutoCompleteTextField.swift */; };
 		9F055B41B224D5DA44239D7B /* Pods_Bolao.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9424014D9D2E2BFEF32849 /* Pods_Bolao.framework */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,7 @@
 		7643070120B11AB500007390 /* GameOverviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameOverviewViewController.swift; sourceTree = "<group>"; };
 		7643070420B1204D00007390 /* GamesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamesCollectionViewCell.swift; sourceTree = "<group>"; };
 		7643070620B1F02900007390 /* FocusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusableView.swift; sourceTree = "<group>"; };
+		76DAE2CB20B7019300E5E2C2 /* AutoCompleteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompleteTextField.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				764306E820B1104600007390 /* ScoreCalculator.swift */,
+				76DAE2CB20B7019300E5E2C2 /* AutoCompleteTextField.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -294,10 +297,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Bolao/Pods-Bolao-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/TvOSScribble/TvOSScribble.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TvOSScribble.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -332,6 +337,7 @@
 				764306E620B1101300007390 /* QueueManager.swift in Sources */,
 				764306E920B1104600007390 /* ScoreCalculator.swift in Sources */,
 				7643070220B11AB500007390 /* GameOverviewViewController.swift in Sources */,
+				76DAE2CC20B7019300E5E2C2 /* AutoCompleteTextField.swift in Sources */,
 				764306FA20B1111200007390 /* MatchScore.swift in Sources */,
 				7643070520B1204D00007390 /* GamesCollectionViewCell.swift in Sources */,
 				764306F820B1110000007390 /* Match.swift in Sources */,
@@ -484,10 +490,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X6426J5XFC;
 				INFOPLIST_FILE = Bolao/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TamaraCampos.Bolao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -504,10 +507,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X6426J5XFC;
 				INFOPLIST_FILE = Bolao/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TamaraCampos.Bolao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

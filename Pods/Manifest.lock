@@ -1,12 +1,15 @@
 PODS:
   - Alamofire (4.7.2)
+  - TvOSScribble (0.0.1)
 
 DEPENDENCIES:
   - Alamofire (~> 4.7)
+  - TvOSScribble (~> 0.0.1)
 
 SPEC CHECKSUMS:
   Alamofire: e4fa87002c137ba2d8d634d2c51fabcda0d5c223
+  TvOSScribble: c769b3a439d1ec6972349cd339091adc2819b275
 
-PODFILE CHECKSUM: 11fe5aed34a1a6e9a1a24e711fdabc272fdeaf4b
+PODFILE CHECKSUM: 09569ca26f2c7a121241bd86dc2b8159e6bff65c
 
 COCOAPODS: 1.4.0
