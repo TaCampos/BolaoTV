@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Bet: Codable {
+class Bet: Codable, DBEntity {
 
     private(set) var id: Int64
     private(set) var multiplier: Int
@@ -62,5 +62,9 @@ class Bet: Codable {
 
     func setBetScore(betScore: MatchScore) {
         self.betScore = betScore
+    }
+    
+    static func urlExtention() -> String {
+        return "bets"
     }
 }

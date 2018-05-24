@@ -8,8 +8,8 @@
 
 import UIKit
 
-class ScoreRules: Codable {
-
+class ScoreRules: Codable, DBEntity {
+    
     private(set) var id: Int64
     private(set) var pointsCorrectWinner: Int
     private(set) var pointsFirstTeamGoals: Int
@@ -90,5 +90,9 @@ class ScoreRules: Codable {
 
     func removeValidTeams(atIndex index: Int) -> Team {
         return (self.validTeams?.remove(at: index))!
+    }
+    
+    static func urlExtention() -> String {
+        return "scoreRules"
     }
 }

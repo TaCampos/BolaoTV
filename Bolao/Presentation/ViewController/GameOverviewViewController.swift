@@ -32,6 +32,10 @@ class GameOverviewViewController: UIViewController {
     @IBOutlet weak var gamesCollectionView: UICollectionView!
     @IBOutlet weak var betsCollectionView: UICollectionView!
 
+    private var presenter = GameOverviewPresenter()
+    private var matches: [Match]!
+    private var displayingMatch: Match!
+    
     // MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,6 +44,15 @@ class GameOverviewViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         setUpLayout()
+        
+        presenter.nextMatches(sorted: true) { (matches) in
+            self.matches = matches
+            if(matches.count > 0) {
+                self.displayingMatch = matches[0]
+                self.presenter.updateCurrentMatch(newValue: matches[0])
+            }
+        }
+        
     }
 
     func setUpLayout() {

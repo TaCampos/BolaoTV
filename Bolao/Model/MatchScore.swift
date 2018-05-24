@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MatchScore: Codable {
+class MatchScore: Codable, DBEntity {
 
     private(set) var id: Int64
     private(set) var firstTeamScore: Int
@@ -79,5 +79,8 @@ class MatchScore: Codable {
     // TODO: remove ScoreAuthor??
 
 
+    static func urlExtention() -> String {
+        return "matchScores"
+    }
 }
 

@@ -8,53 +8,60 @@
 
 import UIKit
 
-class Match: Codable {
+class Match: Codable, DBEntity {
 
     private(set) var id: Int64
-    private(set) var date: Date
+    private(set) var timeInterval: Double
     private(set) var championshipRound: String
     private(set) var playoff: Bool
-
+    private(set) var stadium: String
+    private(set) var city: String
+    private(set) var championshipGroup: String
+    
     // MARK: Relationship
     private(set) var firstTeam: Team
     private(set) var secondTeam: Team
     private(set) var score: MatchScore
-    private(set) var championship: Championship
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
-        case date = "date"
+        case timeInterval = "date"
         case championshipRound = "championshipRound"
+        case championshipGroup = "championshipGroup"
         case playoff = "playoff"
         case firstTeam = "firstTeam"
         case secondTeam = "secondTeam"
         case score = "score"
-        case championship = "championship"
+        case stadium = "stadium"
+        case city = "city"
         
     }
     
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         id = try values.decode(Int64.self, forKey: .id)
-        date = try values.decode(Date.self, forKey: .date)
+        timeInterval = try values.decode(Double.self, forKey: .timeInterval)
         championshipRound = try values.decode(String.self, forKey: .championshipRound)
         playoff = try values.decode(Bool.self, forKey: .playoff)
         firstTeam = try values.decode(Team.self, forKey: .firstTeam)
         secondTeam = try values.decode(Team.self, forKey: .secondTeam)
         score = try values.decode(MatchScore.self, forKey: .score)
-        championship = try values.decode(Championship.self, forKey: .championship)
-        
+        stadium = try values.decode(String.self, forKey: .stadium)
+        city = try values.decode(String.self, forKey: .city)
+        championshipGroup = try values.decode(String.self, forKey: .city)
     }
     
-    init(id: Int64, date: Date, championshipRound: String, playoff: Bool, firstTeam: Team, secondTeam: Team, score: MatchScore, championship: Championship) {
+    init(id: Int64, timeInterval: Double, championshipRound: String, playoff: Bool, firstTeam: Team, secondTeam: Team, score: MatchScore, stadium : String, city: String, group: String) {
         self.id = id
-        self.date = date
+        self.timeInterval = timeInterval
         self.championshipRound = championshipRound
         self.playoff = playoff
         self.firstTeam = firstTeam
         self.secondTeam = secondTeam
         self.score = score
-        self.championship = championship
+        self.stadium = stadium
+        self.city = city
+        self.championshipGroup = group
     }
 
     // MARK: set functions
@@ -62,8 +69,8 @@ class Match: Codable {
         self.id = id
     }
 
-    func setMatchDate(date: Date) {
-        self.date = date
+    func setMatchDate(timeInterval: Double) {
+        self.timeInterval = timeInterval
     }
 
     func setChampionshipRound(championshipRound: String) {
@@ -86,9 +93,22 @@ class Match: Codable {
         self.score = score
     }
 
-    func setChampioship(championship: Championship) {
-        self.championship = championship
-    }
 
+    static func urlExtention() -> String {
+        return "matches"
+    }
+    
 }
+
+extension Match: Equatable {
+
+    
+    static func == (lhs: Match, rhs: Match) -> Bool {
+        if(lhs.id == rhs.id) {
+            return true
+        }
+        return false
+    }
+}
+
 
