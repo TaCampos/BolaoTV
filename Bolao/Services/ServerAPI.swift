@@ -11,9 +11,12 @@ import Foundation
 
 class ServerAPI {
     
-    // With Alamofire
-    func fetchAllBets(completion: @escaping ([MatchScore]?) -> Void) {
-        guard let url = URL(string: "http://192.168.0.104:8080/matchScores/") else {
+    static let baseURL = "http://10.40.48.97:8080/"
+
+    
+    static func fetchAll<T: Codable & DBEntity>(completion: @escaping ([T]?) -> Void) {
+        
+        guard let url = URL(string: baseURL + T.urlExtention() + "/") else {
             completion(nil)
             return
         }
@@ -22,21 +25,21 @@ class ServerAPI {
             .validate()
             .responseJSON { response in
                 guard response.result.isSuccess else {
-                    print("Error while fetching remote bets: \(String(describing: response.result.error))")
+                    print("Error while fetching remote \(T.urlExtention()): \(String(describing: response.result.error))")
                         completion(nil)
                     return
                 }
 
                 guard let value = response.result.value as? [[String : Any]] else {
-                        print("Malformed data received from fetchAllBets service")
+                        print("Malformed data received from fetchAll service")
                         completion(nil)
                         return
                 }
                 
                 if let jsonData = try? JSONSerialization.data(withJSONObject: value) {
                     do {
-                        let scores = try JSONDecoder().decode([MatchScore].self, from: jsonData)
-                        completion(scores)
+                        let result = try JSONDecoder().decode([T].self, from: jsonData)
+                        completion(result)
                     } catch {
                         print(error)
                     }
@@ -46,4 +49,39 @@ class ServerAPI {
         }
     }
     
+    static func fetchEntity<T: Codable & DBEntity>(id: String, completion: @escaping (T?) -> Void) {
+        
+        guard let url = URL(string: baseURL + T.urlExtention() + "/" + id) else {
+            completion(nil)
+            return
+        }
+        Alamofire.request(url,
+                          method: .get)
+            .validate()
+            .responseJSON { response in
+                guard response.result.isSuccess else {
+                    print("Error while fetching remote \(T.urlExtention()): \(String(describing: response.result.error))")
+                    completion(nil)
+                    return
+                }
+                
+                guard let value = response.result.value as? [[String : Any]] else {
+                    print("Malformed data received from fetchAll service")
+                    completion(nil)
+                    return
+                }
+                
+                if let jsonData = try? JSONSerialization.data(withJSONObject: value) {
+                    do {
+                        let result = try JSONDecoder().decode(T.self, from: jsonData)
+                        completion(result)
+                    } catch {
+                        print(error)
+                    }
+                    
+                }
+                completion(nil)
+        }
+                
+    }
 }
