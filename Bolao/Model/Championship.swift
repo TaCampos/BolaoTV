@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Championship: Codable {
+class Championship: Codable, DBEntity {
 
     private(set) var id: Int64
     private(set) var name: String
@@ -76,7 +76,9 @@ class Championship: Codable {
         return matches.remove(at: index)
     }
 
-
+    static func urlExtention() -> String {
+        return "championships"
+    }
 
 }
 
