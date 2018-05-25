@@ -117,7 +117,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iaD-pZ-mI6">
-                                        <rect key="frame" x="185" y="626" width="202" height="110"/>
+                                        <rect key="frame" x="185" y="626" width="202" height="111"/>
                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="iaD-pZ-mI6" secondAttribute="height" multiplier="2:1.1" id="gB7-d5-LQO"/>
@@ -132,7 +132,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Bet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B0O-Yq-7Gg">
-                                        <rect key="frame" x="240" y="746" width="92" height="30"/>
+                                        <rect key="frame" x="240" y="747" width="92" height="30"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -155,19 +155,19 @@
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="RussiaFirst" translatesAutoresizingMaskIntoConstraints="NO" id="NMH-6M-wME">
-                                                            <rect key="frame" x="0.0" y="15" width="240" height="65"/>
+                                                            <rect key="frame" x="-4" y="15" width="240" height="65"/>
                                                         </imageView>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SaudiArabiaSecond" translatesAutoresizingMaskIntoConstraints="NO" id="CCN-0I-Bte">
-                                                            <rect key="frame" x="24" y="90" width="242" height="65"/>
+                                                            <rect key="frame" x="28" y="90" width="242" height="65"/>
                                                         </imageView>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SAUDI ARABIA" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m5a-VZ-BAm">
-                                                            <rect key="frame" x="114" y="106" width="137" height="24"/>
+                                                            <rect key="frame" x="118" y="106" width="137" height="24"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RUSSIA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HNa-qv-EQ8">
-                                                            <rect key="frame" x="15" y="31" width="73" height="24"/>
+                                                            <rect key="frame" x="11" y="31" width="73" height="24"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="20"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -177,9 +177,9 @@
                                                 <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstItem="m5a-VZ-BAm" firstAttribute="centerY" secondItem="CCN-0I-Bte" secondAttribute="centerY" constant="-5" id="21Z-Eb-WvD"/>
-                                                    <constraint firstAttribute="trailing" secondItem="CCN-0I-Bte" secondAttribute="trailing" id="7rn-B6-2WJ"/>
+                                                    <constraint firstAttribute="trailing" secondItem="CCN-0I-Bte" secondAttribute="trailing" constant="-4" id="7rn-B6-2WJ"/>
                                                     <constraint firstItem="NMH-6M-wME" firstAttribute="top" secondItem="aMQ-zN-ndc" secondAttribute="top" constant="15" id="SFS-U4-Kco"/>
-                                                    <constraint firstItem="NMH-6M-wME" firstAttribute="leading" secondItem="aMQ-zN-ndc" secondAttribute="leading" id="ayY-Dq-ASO"/>
+                                                    <constraint firstItem="NMH-6M-wME" firstAttribute="leading" secondItem="aMQ-zN-ndc" secondAttribute="leading" constant="-4" id="ayY-Dq-ASO"/>
                                                     <constraint firstItem="HNa-qv-EQ8" firstAttribute="leading" secondItem="NMH-6M-wME" secondAttribute="leading" constant="15" id="k2G-aL-7eA"/>
                                                     <constraint firstItem="m5a-VZ-BAm" firstAttribute="trailing" secondItem="CCN-0I-Bte" secondAttribute="trailing" constant="-15" id="owR-gC-itQ"/>
                                                     <constraint firstItem="HNa-qv-EQ8" firstAttribute="centerY" secondItem="NMH-6M-wME" secondAttribute="centerY" constant="-5" id="u3a-SN-upz"/>

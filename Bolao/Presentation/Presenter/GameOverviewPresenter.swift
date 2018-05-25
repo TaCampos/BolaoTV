@@ -136,7 +136,7 @@ class GameOverviewPresenter {
     /// - Returns: the rank of all users that bet in this match.
     func allUsersRank() -> [(key: String, value: Int)]? {
         
-        if(currentMatch!.timeInterval < Date().timeIntervalSince1970) {
+        if(currentMatch!.timeInterval > Date().timeIntervalSince1970) {
             return nil
         }
         

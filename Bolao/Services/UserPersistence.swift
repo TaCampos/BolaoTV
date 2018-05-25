@@ -31,6 +31,9 @@ class UserPersistence {
         if(jsonData != nil) {
             let jsonDecoder = JSONDecoder()
             _users = try? jsonDecoder.decode([LocalUser].self, from: jsonData!)
+            if _users == nil {
+                _users = []
+            }
         } else {
             _users = [LocalUser]()
         }
