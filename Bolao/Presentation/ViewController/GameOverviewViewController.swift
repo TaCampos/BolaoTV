@@ -78,21 +78,10 @@ class GameOverviewViewController: UIViewController {
         presenter.nextMatches(sorted: true) { (matches) in
             self.matches = matches
             if(matches.count > 0) {
-                self.displayingMatch = matches[0]
-                self.displayingMatch(match: matches[0])
-                self.presenter.updateCurrentMatch(newValue: matches[0])
-                
-                // populate user and bets
-                self.userNamesAndBets = self.presenter.usersNamesAndBets()
-                
-                // if game is over, we have a ranking.
-                // vector of tubles ordered by second term - position
-                if let betsRanking = self.presenter.allUsersRank() {
-                    self.hasRanking = true
-                    self.ranking = betsRanking.sorted(by: { $0.1 < $1.1 })
-                } else {
-                    self.userNamesBets = Array(self.userNamesAndBets.keys)
+                if self.displayingMatch == nil {
+                    self.displayingMatch = matches[0]
                 }
+                self.displayingMatch(match: self.displayingMatch)
                 
                 // function to calculate number of games by day
                 self.getMatchesByDay()
@@ -194,6 +183,21 @@ class GameOverviewViewController: UIViewController {
 
     func displayingMatch(match: Match) {
         self.displayingMatch = match
+
+        self.presenter.updateCurrentMatch(newValue: displayingMatch)
+        
+        // populate user and bets
+        self.userNamesAndBets = self.presenter.usersNamesAndBets()
+        
+        // if game is over, we have a ranking.
+        // vector of tubles ordered by second term - position
+        if let betsRanking = self.presenter.allUsersRank() {
+            self.hasRanking = true
+            self.ranking = betsRanking.sorted(by: { $0.1 < $1.1 })
+        } else {
+            self.userNamesBets = Array(self.userNamesAndBets.keys)
+        }
+        self.betsCollectionView.reloadData()
         
         if Date().timeIntervalSince1970 >= match.timeInterval {
             addButton.isEnabled = false
