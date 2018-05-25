@@ -197,7 +197,7 @@ class GameOverviewPresenter {
         }
         
         let usersRankSortedDict = usersRankDict.sorted { (lhs, rhs) -> Bool in
-            return lhs < rhs
+            return lhs.value < rhs.value
         }
         return usersRankSortedDict
     }
