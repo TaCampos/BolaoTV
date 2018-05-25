@@ -93,7 +93,7 @@
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="110" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HLd-PP-q7s">
                                                             <rect key="frame" x="325" y="27" width="76" height="37"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="21"/>
-                                                            <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="pts" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9bf-BQ-yOS">
@@ -134,23 +134,24 @@
                                                     <outlet property="gamesWord" destination="Nyk-5h-Mex" id="dWp-H3-K08"/>
                                                     <outlet property="nameLabel" destination="Ltd-9e-E0Z" id="ImK-yZ-VKS"/>
                                                     <outlet property="pointsLabel" destination="HLd-PP-q7s" id="992-Jh-7x7"/>
+                                                    <outlet property="pointsWord" destination="9bf-BQ-yOS" id="suO-3u-AMe"/>
                                                     <outlet property="positionLabel" destination="Jwj-Rp-V6g" id="Vie-ag-i9z"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="66" sectionFooterHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="b3a-Ue-lqd" userLabel="ResultsTableVIew">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="66" sectionFooterHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="b3a-Ue-lqd" userLabel="ResultsTableVIew">
                                         <rect key="frame" x="1173" y="396" width="466" height="624"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="466" id="NEw-Kz-F8B"/>
                                         </constraints>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ResultCell" rowHeight="80" id="uC6-QL-uD2" customClass="ResultsTableViewCell" customModule="Bolao" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="66" width="466" height="80"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="ResultCell" rowHeight="90" id="uC6-QL-uD2" customClass="ResultsTableViewCell" customModule="Bolao" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="66" width="466" height="90"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="uC6-QL-uD2" id="oLa-xa-0Zw">
-                                                    <rect key="frame" x="0.0" y="0.0" width="466" height="80"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="466" height="90"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <view contentMode="scaleToFill" horizontalHuggingPriority="500" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="JES-VC-nsr" userLabel="Visitor Score">
@@ -224,7 +225,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aFI-Cm-sp6">
-                                                            <rect key="frame" x="222" y="12" width="22" height="66"/>
+                                                            <rect key="frame" x="222" y="17" width="22" height="66"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="56"/>
                                                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -246,9 +247,10 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
-                                                    <outlet property="homeLayer" destination="3kn-1u-hPQ" id="3Ko-uG-NeJ"/>
+                                                    <outlet property="homeLayer" destination="0oK-9I-HPq" id="JvY-oZ-QsZ"/>
                                                     <outlet property="homeScore" destination="vUs-tP-6hr" id="f3g-yP-XT0"/>
                                                     <outlet property="homeTeam" destination="N6S-Cp-rme" id="qDt-R9-KU6"/>
+                                                    <outlet property="scoreSeparator" destination="aFI-Cm-sp6" id="Cbt-QT-slT"/>
                                                     <outlet property="visitorLayer" destination="JES-VC-nsr" id="A20-qc-COu"/>
                                                     <outlet property="visitorScore" destination="3jl-wt-dih" id="hHc-LP-6kf"/>
                                                     <outlet property="visitorTeam" destination="6wH-eS-OjL" id="oDE-vY-rpt"/>
@@ -265,18 +267,18 @@
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="66" sectionFooterHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="xvl-n4-Bfl" userLabel="Points TableView">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="66" sectionFooterHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="xvl-n4-Bfl" userLabel="Points TableView">
                                         <rect key="frame" x="1709" y="396" width="159" height="624"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="159" id="2OL-qL-CF8"/>
                                         </constraints>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserPointsCell" rowHeight="80" id="o3x-4F-kNk" customClass="UserPointsCell" customModule="Bolao" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="66" width="121" height="80"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserPointsCell" rowHeight="90" id="o3x-4F-kNk" customClass="UserPointsCell" customModule="Bolao" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="66" width="121" height="90"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o3x-4F-kNk" id="Lpc-fI-zoq">
-                                                    <rect key="frame" x="0.0" y="0.0" width="121" height="80"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="121" height="90"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="100" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1BB-NU-Jmx" userLabel="Points">
@@ -306,23 +308,23 @@
                                                     </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
-                                                    <outlet property="PointsLabel" destination="1BB-NU-Jmx" id="1aV-rs-rUD"/>
+                                                    <outlet property="pointsLabel" destination="1BB-NU-Jmx" id="1aV-rs-rUD"/>
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
                                     </tableView>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="80" sectionHeaderHeight="66" sectionFooterHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="71F-uo-cO7" userLabel="Guesses TableView">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="90" sectionHeaderHeight="66" sectionFooterHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="71F-uo-cO7" userLabel="Guesses TableView">
                                         <rect key="frame" x="633" y="396" width="466" height="624"/>
                                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="466" id="grr-CI-Fan"/>
                                         </constraints>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserGuessCell" rowHeight="80" id="2U7-au-X3u" customClass="UserGuessTableViewCell" customModule="Bolao" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="66" width="466" height="80"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserGuessCell" rowHeight="90" id="2U7-au-X3u" customClass="UserGuessTableViewCell" customModule="Bolao" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="66" width="466" height="90"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="2U7-au-X3u" id="2Vb-Z0-0tu">
-                                                    <rect key="frame" x="0.0" y="0.0" width="466" height="80"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="466" height="90"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="BRA" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G7u-8b-SSg" userLabel="Home Team">
@@ -336,7 +338,7 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NZH-sN-o8G">
-                                                            <rect key="frame" x="222" y="12" width="22" height="66"/>
+                                                            <rect key="frame" x="222" y="17" width="22" height="66"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="56"/>
                                                             <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -427,6 +429,7 @@
                                                     <outlet property="homeLayer" destination="ajh-Zi-kQE" id="AWw-Q4-Qw5"/>
                                                     <outlet property="homeScore" destination="mwU-AI-C3E" id="wrl-R2-Meg"/>
                                                     <outlet property="homeTeam" destination="G7u-8b-SSg" id="Qww-GI-odg"/>
+                                                    <outlet property="scoreSeparator" destination="NZH-sN-o8G" id="mIk-W7-7g5"/>
                                                     <outlet property="visitorLayer" destination="cbA-ug-Uec" id="F6R-AJ-uZa"/>
                                                     <outlet property="visitorScore" destination="ynL-ym-kgB" id="xmV-r0-1bi"/>
                                                     <outlet property="visitorTeam" destination="fTU-7N-4cs" id="d7T-dw-McW"/>
