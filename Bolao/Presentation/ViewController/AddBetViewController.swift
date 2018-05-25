@@ -59,7 +59,7 @@ class AddBetViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func addBetButtonTouched(_ sender: Any) {
-        var userName : String
+        var userName : String!
         var newUser : Bool
         
         if let selectedUser = self.selectedUser {
@@ -67,15 +67,21 @@ class AddBetViewController: UIViewController, UITextFieldDelegate {
             newUser = false
         } else {
             newUser = true
-            userName = nameTextField.text!
+            userName = nameTextField.text
         }
         
-        let firstScore = Int(teamOneScore.text!)
-        let secondScore = Int(teamTwoScore.text!)
+        let firstScore = teamOneScore.text ?? ""
+        let secondScore = teamTwoScore.text ?? ""
         
-        addBetPresenter.newBetByUser(with: userName, newUser: newUser, firstTeamScore: firstScore!, secondTeamScore: secondScore!)
+        if userName.isEmpty ||  firstScore.isEmpty || secondScore.isEmpty {
+            let alert = UIAlertController(title: "Empty Fields", message: "Fill all fields to make a bet", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            addBetPresenter.newBetByUser(with: userName, newUser: newUser, firstTeamScore: Int(firstScore)!, secondTeamScore: Int(secondScore)!)
+            self.dismiss(animated: true, completion: nil)
+        }
         
-        self.dismiss(animated: true, completion: nil)
     }
 }
 
