@@ -63,7 +63,22 @@ class Match: Codable, DBEntity {
         self.city = city
         self.championshipGroup = group
     }
+    
 
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(timeInterval, forKey: .timeInterval)
+        try container.encode(championshipRound, forKey: .championshipRound)
+        try container.encode(championshipGroup, forKey: .championshipGroup)
+        try container.encode(playoff, forKey: .playoff)
+        try container.encode(firstTeam, forKey: .firstTeam)
+        try container.encode(secondTeam, forKey: .secondTeam)
+        try container.encode(score, forKey: .score)
+        try container.encode(stadium, forKey: .stadium)
+        try container.encode(city, forKey: .city)
+    }
+    
     // MARK: set functions
     func setId(id: Int64) {
         self.id = id

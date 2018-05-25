@@ -11,7 +11,7 @@ import Foundation
 
 class ServerAPI {
     
-    static let baseURL = "http://10.40.48.82:8080/"
+    static let baseURL = "http://192.168.0.103:8080/"
 
     
     static func fetchAll<T: Codable & DBEntity>(completion: @escaping ([T]?) -> Void) {
