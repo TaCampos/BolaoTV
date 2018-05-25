@@ -12,6 +12,10 @@ class ScoreCalculator {
     static func score(of user: LocalUser, in: Match) -> Double? {
         return 0
     }
+    
+    static func score(of user: LocalUser, in: [Match]) -> Double? {
+        return 0
+    }
 
     static func score(of users: [LocalUser], in: Match) -> [(LocalUser, Double?)] {
         return []

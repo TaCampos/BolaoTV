@@ -187,17 +187,16 @@ class GameOverviewPresenter {
         var lastScore : Double? = nil
         var rank = 1
         for (userName, score) in sortedDict {
-            usersRankDict[userName] = rank
-            if(lastScore == nil) {
-                rank += 1
-            } else if(lastScore != score){
+            
+            if(lastScore != nil && lastScore != score){
                 rank += 1
             }
+            usersRankDict[userName] = rank
             lastScore = score
         }
         
         let usersRankSortedDict = usersRankDict.sorted { (lhs, rhs) -> Bool in
-            return lhs < rhs
+            return lhs.value < rhs.value
         }
         return usersRankSortedDict
     }
