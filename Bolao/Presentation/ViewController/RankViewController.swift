@@ -151,11 +151,12 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.positionLabel.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
                 cell.pointsLabel.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
                 cell.pointsWord.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+                cell.focusStyle = .custom
             }
             
             if let indexPath = context.nextFocusedIndexPath,
                 let cell = tableView.cellForRow(at: indexPath) as? UserRankTableViewCell {
-                cell.backgroundColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.6)
+                cell.backgroundColor = #colorLiteral(red: 0.869321066, green: 0.869321066, blue: 0.869321066, alpha: 1)
                 cell.nameLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                 cell.gamesLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                 cell.gamesWord.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -163,6 +164,7 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.pointsLabel.textColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
                 cell.pointsWord.textColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
                 cell.transform = CGAffineTransform(scaleX: 1.1 ,y: 1.1)
+                cell.focusStyle = .custom
                 tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.middle, animated: true)
                 selectedUser = indexPath.row
                 guessesTableView.reloadData()
@@ -182,6 +184,7 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.homeTeam.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
                 cell.visitorTeam.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
                 cell.scoreSeparator.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                cell.focusStyle = .custom
                 
                 if let resultCell = resultsTableView.cellForRow(at: previousIndexPath) as? ResultsTableViewCell {
                     resultCell.contentView.layer.shadowOpacity = 0
@@ -193,6 +196,7 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
                     resultCell.homeTeam.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
                     resultCell.visitorTeam.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
                     resultCell.scoreSeparator.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                    resultCell.focusStyle = .custom
 
                 }
                 
@@ -200,7 +204,7 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
             
             if let indexPath = context.nextFocusedIndexPath,
                 let cell = tableView.cellForRow(at: indexPath) as? UserGuessTableViewCell {
-                cell.backgroundColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.6)
+                cell.backgroundColor = #colorLiteral(red: 0.869321066, green: 0.869321066, blue: 0.869321066, alpha: 1)
                 cell.homeScore.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                 cell.visitorScore.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                 cell.visitorLayer.backgroundColor = .clear
@@ -208,7 +212,8 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.homeTeam.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                 cell.visitorTeam.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                 cell.scoreSeparator.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            
+                cell.focusStyle = .custom
+                
                 if let resultCell = resultsTableView.cellForRow(at: indexPath) as? ResultsTableViewCell {
                     resultCell.backgroundColor = #colorLiteral(red: 0.869321066, green: 0.869321066, blue: 0.869321066, alpha: 1)
                     resultCell.homeScore.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -218,10 +223,12 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
                     resultCell.homeTeam.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                     resultCell.visitorTeam.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                     resultCell.scoreSeparator.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                    resultCell.focusStyle = .custom
                 }
             }
         }
     }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if(scrollView == guessesTableView) {
             resultsTableView.contentOffset = scrollView.contentOffset
