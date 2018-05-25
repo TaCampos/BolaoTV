@@ -63,23 +63,25 @@ class GameOverviewViewController: UIViewController {
             if(matches.count > 0) {
                 self.displayingMatch = matches[0]
                 self.presenter.updateCurrentMatch(newValue: matches[0])
+                
+                // populate user and bets
+                self.userNamesAndBets = self.presenter.usersNamesAndBets()
+                
+                // if game is over, we have a ranking.
+                // vector of tubles ordered by second term - position
+                if let betsRanking = self.presenter.allUsersRank() {
+                    self.hasRanking = true
+                    self.ranking = betsRanking.sorted(by: { $0.1 < $1.1 })
+                } else {
+                    self.userNamesBets = Array(self.userNamesAndBets.keys)
+                }
+                
+                // function to calculate number of games by day
+                self.calculateNumberOfGamesByDay()
             }
         }
 
-        // populate user and bets
-        self.userNamesAndBets = presenter.usersNamesAndBets()
-
-        // if game is over, we have a ranking.
-        // vector of tubles ordered by second term - position
-        if let betsRanking = presenter.allUsersRank() {
-            self.hasRanking = true
-            self.ranking = betsRanking.sorted(by: { $0.1 < $1.1 })
-        } else {
-            self.userNamesBets = Array(userNamesAndBets.keys)
-        }
-
-        // function to calculate number of games by day
-        calculateNumberOfGamesByDay()
+        
     }
 
 
@@ -168,11 +170,18 @@ class GameOverviewViewController: UIViewController {
         self.firstTeamName.text = matches[matchIndex].firstTeam.name
         self.secondTeamName.text = matches[matchIndex].secondTeam.name
 
-        let firstTeamScore = matches[matchIndex].score.firstTeamScore
-        let secondTeamScore = matches[matchIndex].score.secondTeamScore
+        let firstTeamScore = matches[matchIndex].score?.firstTeamScore
+        let secondTeamScore = matches[matchIndex].score?.secondTeamScore
 
-        self.firstTeamScore.text = String(describing: firstTeamScore)
-        self.secondTeamName.text = String(describing: secondTeamScore)
+        if(firstTeamScore != nil && secondTeamScore != nil) {
+            self.firstTeamScore.text = String(describing: firstTeamScore)
+            self.secondTeamName.text = String(describing: secondTeamScore)
+        } else {
+            self.firstTeamScore.text = ""
+            self.secondTeamName.text = ""
+        }
+        
+        
 
         self.stadiumName.text = matches[matchIndex].stadium
         self.cityName.text = matches[matchIndex].city
