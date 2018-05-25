@@ -173,6 +173,7 @@ class GameOverviewViewController: UIViewController {
     }
 
     func displayingMatch(match: Match) {
+        self.displayingMatch = match
         
         self.firstTeamName.text = match.firstTeam.name
         self.secondTeamName.text = match.secondTeam.name
@@ -385,7 +386,6 @@ extension GameOverviewViewController: UICollectionViewDelegate, UICollectionView
 
         if collectionView == gamesCollectionView {
             let match = matchesForSection(indexPath.section)[indexPath.row]
-            self.displayingMatch = match
             self.displayingMatch(match: match)
 
             presenter.updateCurrentMatch(newValue: displayingMatch)
