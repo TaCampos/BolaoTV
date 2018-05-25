@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="14109" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="appleTV" orientation="landscape">
+        <adaptation id="light"/>
+    </device>
+    <dependencies>
+        <deployment identifier="tvOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Tab Bar Controller-->
+        <scene sceneID="56A-IU-H4j">
+            <objects>
+                <tabBarController id="cO8-vF-Guy" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="esk-YJ-hJA">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="0.0"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="AzQ-u6-ihL" kind="relationship" relationship="viewControllers" id="h69-aX-PI8"/>
+                        <segue destination="6rP-OO-ivS" kind="relationship" relationship="viewControllers" id="Zoq-xz-gfV"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="adB-7T-f1Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1567" y="-496"/>
+        </scene>
+        <!--GameOverview-->
+        <scene sceneID="cj5-m0-3o4">
+            <objects>
+                <viewControllerPlaceholder storyboardName="GameOverview" id="AzQ-u6-ihL" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="zgs-hn-gex"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lti-GR-5Cf" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-256" y="-590"/>
+        </scene>
+        <!--RankView-->
+        <scene sceneID="JGQ-QX-yp8">
+            <objects>
+                <viewControllerPlaceholder storyboardName="RankView" id="6rP-OO-ivS" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Item" id="tbL-GN-li5"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xb0-LN-ewh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-256" y="-326"/>
+        </scene>
+    </scenes>
+</document>
