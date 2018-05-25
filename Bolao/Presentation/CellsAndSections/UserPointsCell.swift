@@ -12,6 +12,8 @@ import UIKit
 class UserPointsCell: UITableViewCell {
     
     @IBOutlet weak var pointsLabel: UILabel!
+    @IBOutlet weak var ptsLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
         
