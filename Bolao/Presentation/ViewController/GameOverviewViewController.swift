@@ -97,6 +97,7 @@ class GameOverviewViewController: UIViewController {
                 // function to calculate number of games by day
                 self.getMatchesByDay()
                 self.gamesCollectionView.reloadData()
+                self.betsCollectionView.reloadData()
             }
         }
 

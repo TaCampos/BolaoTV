@@ -16,6 +16,7 @@ class UserRankTableViewCell: UITableViewCell {
     @IBOutlet weak var pointsLabel: UILabel!
     @IBOutlet weak var gamesWord: UILabel!
     
+    @IBOutlet weak var pointsWord: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
