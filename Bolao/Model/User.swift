@@ -8,7 +8,7 @@
 
 import UIKit
 
-class User: Codable {
+class User: Codable, DBEntity {
 
     private(set) var id: Int64
     private(set) var name: String
@@ -116,7 +116,9 @@ class User: Codable {
         return updateImage
     }
 
-
+    static func urlExtention() -> String {
+        return "users"
+    }
 
 
 

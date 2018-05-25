@@ -13,5 +13,6 @@ class BetsCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var personNameBet: UILabel!
     @IBOutlet weak var scoreBet: UILabel!
 
-
+    @IBOutlet weak var bubbleImage: UIImageView!
+    
 }

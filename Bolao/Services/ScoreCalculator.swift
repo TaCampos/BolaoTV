@@ -9,11 +9,15 @@
 import UIKit
 
 class ScoreCalculator {
-    func score(of user: User, in league: League) -> Float {
+    static func score(of user: LocalUser, in: Match) -> Double? {
         return 0
     }
 
-    func score(of users: [User], in league: League) -> [(User, Float)] {
+    static func score(of users: [LocalUser], in: Match) -> [(LocalUser, Double?)] {
+        return []
+    }
+    
+    static func score(of users: [LocalUser], in: [Match]) -> [(LocalUser, Double?)] {
         return []
     }
 }

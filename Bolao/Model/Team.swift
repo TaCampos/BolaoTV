@@ -8,24 +8,24 @@
 
 import UIKit
 
-class Team: Codable {
+class Team: Codable, DBEntity {
     private(set) var id: Int64
     private(set) var name: String
 
     // MARK: Relationship
-    private(set) var matches: [Match]?
+    //private(set) var matches: [Match]?
 
     enum CodingKeys: String, CodingKey {
         case name = "name"
         case id = "id"
-        case matches = "matches"
+        //case matches = "matches"
     }
     
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         name = try values.decode(String.self, forKey: .name)
         id = try values.decode(Int64.self, forKey: .id)
-        matches = try values.decode([Match]?.self, forKey: .matches)
+        //matches = try values.decode([Match]?.self, forKey: .matches)
     }
     
     init(id: Int64, name: String) {
@@ -41,15 +41,9 @@ class Team: Codable {
     func setName(name: String) {
         self.name = name
     }
-
-    // MARK: add and remove functions
-
-    func addMatch(match: Match) {
-        self.matches?.append(match)
-    }
-
-    func removeMatch(atIndex index: Int) -> Match {
-        return (matches?.remove(at: index))!
+    
+    static func urlExtention() -> String {
+        return "teams"
     }
 }
 

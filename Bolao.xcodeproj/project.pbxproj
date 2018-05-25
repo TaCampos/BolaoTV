@@ -178,6 +178,7 @@
 			isa = PBXGroup;
 			children = (
 				7643070620B1F02900007390 /* FocusableView.swift */,
+				98FD903A20B603D200391983 /* GameOverviewPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -193,6 +194,10 @@
 				764306FB20B1112200007390 /* Team.swift */,
 				764306FD20B1113600007390 /* Bet.swift */,
 				764306FF20B1114D00007390 /* ScoreRules.swift */,
+				98FD903020B434EF00391983 /* Enums.swift */,
+				98FD903220B4368E00391983 /* EntityProtocol.swift */,
+				98FD903620B5D89200391983 /* LocalUser.swift */,
+				98FD903820B5DEE000391983 /* LocalBet.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -342,6 +347,7 @@
 				7643070220B11AB500007390 /* GameOverviewViewController.swift in Sources */,
 				76DAE2CC20B7019300E5E2C2 /* AutoCompleteTextField.swift in Sources */,
 				764306FA20B1111200007390 /* MatchScore.swift in Sources */,
+				98FD903720B5D89200391983 /* LocalUser.swift in Sources */,
 				7643070520B1204D00007390 /* GamesCollectionViewCell.swift in Sources */,
 				764306F820B1110000007390 /* Match.swift in Sources */,
 				764306F120B110BD00007390 /* User.swift in Sources */,
@@ -355,7 +361,10 @@
 				762A5F3720B349AE0011E11A /* BetsCollectionViewCell.swift in Sources */,
 				764306FC20B1112200007390 /* Team.swift in Sources */,
 				764306D620B10FCE00007390 /* AppDelegate.swift in Sources */,
+				98FD903920B5DEE000391983 /* LocalBet.swift in Sources */,
+				98FD903120B434EF00391983 /* Enums.swift in Sources */,
 				764306FE20B1113600007390 /* Bet.swift in Sources */,
+				98FD903B20B603D200391983 /* GameOverviewPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

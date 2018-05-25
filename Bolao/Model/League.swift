@@ -8,7 +8,7 @@
 
 import UIKit
 
-class League: Codable {
+class League: Codable, DBEntity {
 
     private(set) var id: Int64
     private(set) var name: String
@@ -79,6 +79,10 @@ class League: Codable {
 
     func removeUser(atIndex index: Int) -> User {
         return users.remove(at: index)
+    }
+    
+    static func urlExtention() -> String {
+        return "leagues"
     }
 }
 
