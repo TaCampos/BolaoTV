@@ -92,3 +92,14 @@ class Match: Codable {
 
 }
 
+extension Match: Equatable {
+    
+    
+    static func == (lhs: Match, rhs: Match) -> Bool {
+        if(lhs.id == rhs.id) {
+            return true
+        }
+        return false
+    }
+}
+
