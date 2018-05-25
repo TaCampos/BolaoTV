@@ -77,7 +77,8 @@ class GameOverviewViewController: UIViewController {
                 }
                 
                 // function to calculate number of games by day
-                self.calculateNumberOfGamesByDay()
+                self.getMatchesByDay()
+                self.gamesCollectionView.reloadData()
             }
         }
 
@@ -177,18 +178,16 @@ class GameOverviewViewController: UIViewController {
         self.firstTeamName.text = match.firstTeam.name
         self.secondTeamName.text = match.secondTeam.name
 
-        let firstTeamScore = matches[matchIndex].score?.firstTeamScore
-        let secondTeamScore = matches[matchIndex].score?.secondTeamScore
+        let firstTeamScore = match.score?.firstTeamScore
+        let secondTeamScore = match.score?.secondTeamScore
 
-        if(firstTeamScore != nil && secondTeamScore != nil) {
-            self.firstTeamScore.text = String(describing: firstTeamScore)
-            self.secondTeamName.text = String(describing: secondTeamScore)
+        if firstTeamScore == nil || secondTeamScore == nil {
+            self.firstTeamScore.text = " "
+            self.secondTeamScore.text = " "
         } else {
-            self.firstTeamScore.text = ""
-            self.secondTeamName.text = ""
+            self.firstTeamScore.text = "\(firstTeamScore!)"
+            self.secondTeamScore.text = "\(secondTeamScore!)"
         }
-        
-        
 
         self.stadiumName.text = match.stadium
         self.cityName.text = match.city
