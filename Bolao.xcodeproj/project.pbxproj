@@ -28,7 +28,6 @@
 		76DAE2CC20B7019300E5E2C2 /* AutoCompleteTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76DAE2CB20B7019300E5E2C2 /* AutoCompleteTextField.swift */; };
 		984FF26520B8518300C6F5CE /* UserInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984FF26420B8518300C6F5CE /* UserInfoCollectionViewCell.swift */; };
 		984FF26820B851A000C6F5CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 984FF26620B8519F00C6F5CE /* Main.storyboard */; };
-		984FF26A20B8525000C6F5CE /* UserPersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 984FF26920B8525000C6F5CE /* UserPersistence.swift */; };
 		9F055B41B224D5DA44239D7B /* Pods_Bolao.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1D9424014D9D2E2BFEF32849 /* Pods_Bolao.framework */; };
 /* End PBXBuildFile section */
 
@@ -59,7 +58,6 @@
 		76DAE2CB20B7019300E5E2C2 /* AutoCompleteTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoCompleteTextField.swift; sourceTree = "<group>"; };
 		984FF26420B8518300C6F5CE /* UserInfoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		984FF26720B8519F00C6F5CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		984FF26920B8525000C6F5CE /* UserPersistence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPersistence.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,7 +133,6 @@
 		764306E720B1102700007390 /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				984FF26920B8525000C6F5CE /* UserPersistence.swift */,
 				764306E820B1104600007390 /* ScoreCalculator.swift */,
 				76DAE2CB20B7019300E5E2C2 /* AutoCompleteTextField.swift */,
 			);
@@ -352,7 +349,6 @@
 				984FF26520B8518300C6F5CE /* UserInfoCollectionViewCell.swift in Sources */,
 				7643070020B1114D00007390 /* ScoreRules.swift in Sources */,
 				764306F520B110E900007390 /* Championship.swift in Sources */,
-				984FF26A20B8525000C6F5CE /* UserPersistence.swift in Sources */,
 				764306F320B110D300007390 /* League.swift in Sources */,
 				762A5F3520B344B50011E11A /* SectionHeaderCollectionReusableView.swift in Sources */,
 				762A5F3920B4889B0011E11A /* AddBetViewController.swift in Sources */,
