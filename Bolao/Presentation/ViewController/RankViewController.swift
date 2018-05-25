@@ -15,6 +15,8 @@ class RankViewController: UIViewController {
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var pointsTableView: UITableView!
     
+    var selectedUser: Int? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -64,11 +66,33 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
         case classificationTableView:
             return 2
         case guessesTableView:
-            return 2
+            if(selectedUser != nil) {
+                if(selectedUser == 0) {
+                    return 3
+                } else {
+                    return 10
+                }
+            }
+            return 0
+            
         case resultsTableView:
-            return 2
+            if(selectedUser != nil) {
+                if(selectedUser == 0) {
+                    return 3
+                } else {
+                    return 10
+                }
+            }
+            return 0
         case pointsTableView:
-            return 2
+            if(selectedUser != nil) {
+                if(selectedUser == 0) {
+                    return 3
+                } else {
+                    return 10
+                }
+            }
+            return 0
         default:
             return 0
         }
@@ -84,14 +108,20 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
         case guessesTableView:
             let cell = guessesTableView.dequeueReusableCell(withIdentifier: "UserGuessCell", for: indexPath) as! UserGuessTableViewCell
             
+            cell.homeScore.text = String(indexPath.row)
+            cell.visitorScore.text = String(indexPath.row)
+            
             return cell
         case resultsTableView:
             let cell = resultsTableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultsTableViewCell
             
+            cell.homeScore.text = String(indexPath.row)
+            cell.visitorScore.text = String(indexPath.row)
+            
             return cell
         case pointsTableView:
             let cell = pointsTableView.dequeueReusableCell(withIdentifier: "UserPointsCell", for: indexPath) as! UserPointsCell
-            
+            cell.pointsLabel.text = String(indexPath.row)
             return cell
         default:
             return UITableViewCell()
@@ -100,7 +130,7 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, canFocusRowAt indexPath: IndexPath) -> Bool {
-        if(tableView == classificationTableView) {
+        if(tableView == classificationTableView || tableView == guessesTableView) {
             return true
         } else {
             return false
@@ -118,6 +148,9 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.nameLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
                 cell.gamesLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
                 cell.gamesWord.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                cell.positionLabel.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+                cell.pointsLabel.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+                cell.pointsWord.textColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
             }
             
             if let indexPath = context.nextFocusedIndexPath,
@@ -126,11 +159,73 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.nameLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                 cell.gamesLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                 cell.gamesWord.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                cell.positionLabel.textColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
+                cell.pointsLabel.textColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
+                cell.pointsWord.textColor = #colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1)
                 cell.transform = CGAffineTransform(scaleX: 1.1 ,y: 1.1)
                 tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.middle, animated: true)
+                selectedUser = indexPath.row
+                guessesTableView.reloadData()
+                resultsTableView.reloadData()
+                pointsTableView.reloadData()
+            }
+        } else if(tableView == guessesTableView) {
+            if let previousIndexPath = context.previouslyFocusedIndexPath,
+                let cell = tableView.cellForRow(at: previousIndexPath) as? UserGuessTableViewCell{
+                cell.contentView.layer.shadowOpacity = 0
+                cell.backgroundColor = .clear
+                cell.transform = CGAffineTransform(scaleX: 1.0 ,y: 1.0)
+                cell.homeScore.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                cell.visitorScore.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                cell.visitorLayer.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6)
+                cell.homeLayer.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6)
+                cell.homeTeam.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                cell.visitorTeam.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                cell.scoreSeparator.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
                 
+                if let resultCell = resultsTableView.cellForRow(at: previousIndexPath) as? ResultsTableViewCell {
+                    resultCell.contentView.layer.shadowOpacity = 0
+                    resultCell.backgroundColor = .clear
+                    resultCell.homeScore.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                    resultCell.visitorScore.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                    resultCell.visitorLayer.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6)
+                    resultCell.homeLayer.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6)
+                    resultCell.homeTeam.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                    resultCell.visitorTeam.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                    resultCell.scoreSeparator.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+
+                }
                 
             }
+            
+            if let indexPath = context.nextFocusedIndexPath,
+                let cell = tableView.cellForRow(at: indexPath) as? UserGuessTableViewCell {
+                cell.backgroundColor = #colorLiteral(red: 0.8, green: 0.8, blue: 0.8, alpha: 0.6)
+                cell.homeScore.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                cell.visitorScore.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                cell.visitorLayer.backgroundColor = .clear
+                cell.homeLayer.backgroundColor = .clear
+                cell.homeTeam.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                cell.visitorTeam.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                cell.scoreSeparator.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            
+                if let resultCell = resultsTableView.cellForRow(at: indexPath) as? ResultsTableViewCell {
+                    resultCell.backgroundColor = #colorLiteral(red: 0.869321066, green: 0.869321066, blue: 0.869321066, alpha: 1)
+                    resultCell.homeScore.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                    resultCell.visitorScore.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                    resultCell.visitorLayer.backgroundColor = .clear
+                    resultCell.homeLayer.backgroundColor = .clear
+                    resultCell.homeTeam.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                    resultCell.visitorTeam.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                    resultCell.scoreSeparator.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                }
+            }
+        }
+    }
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if(scrollView == guessesTableView) {
+            resultsTableView.contentOffset = scrollView.contentOffset
+            pointsTableView.contentOffset = scrollView.contentOffset
         }
     }
 }

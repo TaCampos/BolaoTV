@@ -27,12 +27,24 @@ class UserPersistence {
     
     static private func loadUsers() {
         let defaults = UserDefaults.standard
-        _users = defaults.object(forKey: userDefaultsKey) as? [LocalUser] ?? [LocalUser]()
+        let dataToLoad = defaults.object(forKey: userDefaultsKey) as? Data
+        if(dataToLoad != nil) {
+            let jsonDecoder = JSONDecoder()
+            let jsonData = try? jsonDecoder.decode(Data.self, from: dataToLoad!)
+            _users = try? jsonDecoder.decode([LocalUser].self, from: jsonData!)
+        } else {
+            _users = [LocalUser]()
+        }
+        
     }
     
     static func updateUsers(_ newValue : [LocalUser]) {
         _users = newValue
         let defaults = UserDefaults.standard
-        //defaults.set(_users, forKey: userDefaultsKey)
+        let jsonEncoder = JSONEncoder()
+        let jsonData = try? jsonEncoder.encode(_users)
+        let dataToSave = try? jsonEncoder.encode(jsonData)
+        
+        defaults.set(dataToSave, forKey: userDefaultsKey)
     }
 }

@@ -17,6 +17,8 @@ class ResultsTableViewCell: UITableViewCell {
     @IBOutlet weak var visitorScore: UILabel!
     @IBOutlet weak var homeLayer: UIView!
     @IBOutlet weak var homeScore: UILabel!
+    @IBOutlet weak var scoreSeparator: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,6 +27,8 @@ class ResultsTableViewCell: UITableViewCell {
         homeLayer.layer.masksToBounds = true
         visitorLayer.layer.cornerRadius = 8
         visitorLayer.layer.masksToBounds = true
+        self.layer.cornerRadius = 15
+        self.layer.masksToBounds = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
