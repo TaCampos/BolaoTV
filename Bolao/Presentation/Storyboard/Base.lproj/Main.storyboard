@@ -185,8 +185,10 @@
                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="HNa-qv-EQ8" secondAttribute="trailing" symbolic="YES" id="zVY-YE-XoZ"/>
                                                 </constraints>
                                                 <connections>
-                                                    <outlet property="timeOne" destination="CCN-0I-Bte" id="Qdq-Nl-bgY"/>
-                                                    <outlet property="timeTwo" destination="NMH-6M-wME" id="TD2-5v-f2L"/>
+                                                    <outlet property="nameTeamOne" destination="HNa-qv-EQ8" id="7Vz-Cv-APb"/>
+                                                    <outlet property="nameTeamTwo" destination="m5a-VZ-BAm" id="MVA-Ra-DSS"/>
+                                                    <outlet property="teamOneImage" destination="NMH-6M-wME" id="7Mc-FD-Tqg"/>
+                                                    <outlet property="teamTwoImage" destination="CCN-0I-Bte" id="8t7-e6-cyT"/>
                                                 </connections>
                                             </collectionViewCell>
                                         </cells>
@@ -262,6 +264,7 @@ JUN</string>
                                                     <constraint firstItem="XxE-Xo-IvO" firstAttribute="centerX" secondItem="EDJ-wm-pyz" secondAttribute="centerX" multiplier="0.95" id="rgL-q0-Zz0"/>
                                                 </constraints>
                                                 <connections>
+                                                    <outlet property="bubbleImage" destination="EDJ-wm-pyz" id="PJT-hx-Bzg"/>
                                                     <outlet property="personNameBet" destination="6Jy-V0-Fij" id="RaK-uC-vIt"/>
                                                     <outlet property="scoreBet" destination="XxE-Xo-IvO" id="wSm-If-i6a"/>
                                                 </connections>
@@ -410,18 +413,19 @@ JUN</string>
                     <connections>
                         <outlet property="addButton" destination="iaD-pZ-mI6" id="673-XV-2Mb"/>
                         <outlet property="betsCollectionView" destination="2ea-rJ-hKK" id="SJx-9e-q6s"/>
+                        <outlet property="championshipRound" destination="hah-cC-uqY" id="l7M-Uo-IuR"/>
                         <outlet property="cityName" destination="Lqh-e5-1pw" id="mZM-P5-mEZ"/>
-                        <outlet property="firstTimeName" destination="UtJ-H4-06k" id="pMT-OX-Bsh"/>
-                        <outlet property="firstTimeScore" destination="DGa-Ka-YJb" id="7sU-n2-bsQ"/>
-                        <outlet property="firstTimeView" destination="FxH-Os-xjq" id="g2Z-Gj-qx7"/>
-                        <outlet property="gameSchedule" destination="wgA-N6-61Z" id="63B-CL-laB"/>
-                        <outlet property="gameTime" destination="6iD-Kx-MtC" id="IHP-ee-G9h"/>
+                        <outlet property="firstTeamName" destination="UtJ-H4-06k" id="pMT-OX-Bsh"/>
+                        <outlet property="firstTeamScore" destination="DGa-Ka-YJb" id="7sU-n2-bsQ"/>
+                        <outlet property="firstTeamView" destination="FxH-Os-xjq" id="g2Z-Gj-qx7"/>
+                        <outlet property="gameHour" destination="6iD-Kx-MtC" id="IHP-ee-G9h"/>
+                        <outlet property="gameSchedule" destination="3xq-9U-wQX" id="c6N-Ib-OP2"/>
                         <outlet property="gamesCollectionView" destination="yYq-uj-GQc" id="EVk-3n-9tO"/>
-                        <outlet property="secondTimeName" destination="dTg-yy-mij" id="zcQ-Dc-uCa"/>
-                        <outlet property="secondTimeScore" destination="VJx-DX-et0" id="mCp-4B-0SW"/>
-                        <outlet property="secondTimeView" destination="XDN-iQ-ccx" id="5hi-gN-v79"/>
+                        <outlet property="secondTeamName" destination="dTg-yy-mij" id="zcQ-Dc-uCa"/>
+                        <outlet property="secondTeamScore" destination="VJx-DX-et0" id="mCp-4B-0SW"/>
+                        <outlet property="secondTeamView" destination="XDN-iQ-ccx" id="5hi-gN-v79"/>
                         <outlet property="stadiumImage" destination="wbv-6E-noB" id="9Pt-QG-6iU"/>
-                        <outlet property="stadiumName" destination="fRf-Rb-4dT" id="Rld-VA-0pg"/>
+                        <outlet property="stadiumName" destination="J9z-cX-C2b" id="ohy-z3-z2a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

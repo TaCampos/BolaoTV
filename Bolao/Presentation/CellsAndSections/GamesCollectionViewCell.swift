@@ -10,8 +10,9 @@ import UIKit
 
 class GamesCollectionViewCell: UICollectionViewCell {
     
-    @IBOutlet weak var timeOne: UIImageView!
-    @IBOutlet weak var timeTwo: UIImageView!
+    @IBOutlet weak var teamOneImage: UIImageView!
+    @IBOutlet weak var teamTwoImage: UIImageView!
 
-    
+    @IBOutlet weak var nameTeamOne: UILabel!
+    @IBOutlet weak var nameTeamTwo: UILabel!
 }
