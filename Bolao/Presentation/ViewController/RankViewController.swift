@@ -15,11 +15,15 @@ class RankViewController: UIViewController {
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var pointsTableView: UITableView!
     
-    var selectedUser: Int? = nil
+    var usersHistoricAndRank: ([((key: String, value: ([(MatchScore, MatchScore?)], Double)), Int)])? = nil
+    var currentUserBetsAndResults: [(MatchScore, MatchScore?)]? = nil
+    var currentUserScores: [Double?]? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        RankViewPresenter.allUsersHistoricAndRank { (usersHistoricAndRank) in
+            self.usersHistoricAndRank = usersHistoricAndRank
+        }
         setUpTableViews()
     }
 
@@ -64,35 +68,13 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
         
         switch tableView {
         case classificationTableView:
-            return 2
+            return usersHistoricAndRank?.count ?? 0
         case guessesTableView:
-            if(selectedUser != nil) {
-                if(selectedUser == 0) {
-                    return 3
-                } else {
-                    return 10
-                }
-            }
-            return 0
-            
+            return currentUserBetsAndResults?.count ?? 0
         case resultsTableView:
-            if(selectedUser != nil) {
-                if(selectedUser == 0) {
-                    return 3
-                } else {
-                    return 10
-                }
-            }
-            return 0
+            return currentUserBetsAndResults?.count ?? 0
         case pointsTableView:
-            if(selectedUser != nil) {
-                if(selectedUser == 0) {
-                    return 3
-                } else {
-                    return 10
-                }
-            }
-            return 0
+            return currentUserBetsAndResults?.count ?? 0
         default:
             return 0
         }
@@ -104,24 +86,44 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
         case classificationTableView:
             let cell = classificationTableView.dequeueReusableCell(withIdentifier: "UserRankCell", for: indexPath) as! UserRankTableViewCell
             
+            let user = usersHistoricAndRank![indexPath.row].0
+            let rank = usersHistoricAndRank![indexPath.row].1
+            currentUserBetsAndResults = user.value.0
+            currentUserScores = RankViewPresenter.scoreOfUserInEachMatch(betsAndResults: user.value.0)
+            cell.nameLabel.text = user.key
+            cell.positionLabel.text = String(rank)
+            cell.positionLabel.text = String(user.value.1)
+            
             return cell
         case guessesTableView:
             let cell = guessesTableView.dequeueReusableCell(withIdentifier: "UserGuessCell", for: indexPath) as! UserGuessTableViewCell
             
-            cell.homeScore.text = String(indexPath.row)
-            cell.visitorScore.text = String(indexPath.row)
-            
+            cell.homeScore.text = String(currentUserBetsAndResults![indexPath.row].0.firstTeamScore)
+            cell.visitorScore.text = String(currentUserBetsAndResults![indexPath.row].0.secondTeamScore)
             return cell
+            
         case resultsTableView:
             let cell = resultsTableView.dequeueReusableCell(withIdentifier: "ResultCell", for: indexPath) as! ResultsTableViewCell
             
-            cell.homeScore.text = String(indexPath.row)
-            cell.visitorScore.text = String(indexPath.row)
+            if let results = currentUserBetsAndResults![indexPath.row].1 {
+                cell.homeScore.text = String(results.firstTeamScore)
+                cell.visitorScore.text = String(results.secondTeamScore)
+            } else {
+                cell.homeScore.text = ""
+                cell.visitorScore.text = ""
+            }
             
             return cell
+            
         case pointsTableView:
             let cell = pointsTableView.dequeueReusableCell(withIdentifier: "UserPointsCell", for: indexPath) as! UserPointsCell
-            cell.pointsLabel.text = String(indexPath.row)
+            if let matchScore = currentUserScores?[indexPath.row] {
+                cell.pointsLabel.text = String(matchScore)
+            } else {
+                cell.pointsLabel.text = "-"
+            }
+            
+            
             return cell
         default:
             return UITableViewCell()
@@ -166,7 +168,6 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.transform = CGAffineTransform(scaleX: 1.1 ,y: 1.1)
                 cell.focusStyle = .custom
                 tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.middle, animated: true)
-                selectedUser = indexPath.row
                 guessesTableView.reloadData()
                 resultsTableView.reloadData()
                 pointsTableView.reloadData()
@@ -248,4 +249,5 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
             pointsTableView.contentOffset = scrollView.contentOffset
         }
     }
+
 }

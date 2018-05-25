@@ -64,4 +64,9 @@ class RankViewPresenter {
         }
         return historic
     }
+    
+    static func scoreOfUserInEachMatch(betsAndResults: [(MatchScore, MatchScore?)]) -> [Double?]? {
+        
+        return nil
+    }
 }
