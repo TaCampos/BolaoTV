@@ -156,7 +156,7 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
             
             if let indexPath = context.nextFocusedIndexPath,
                 let cell = tableView.cellForRow(at: indexPath) as? UserRankTableViewCell {
-                cell.backgroundColor = #colorLiteral(red: 0.869321066, green: 0.869321066, blue: 0.869321066, alpha: 1)
+                cell.backgroundColor = #colorLiteral(red: 0.869321066, green: 0.869321066, blue: 0.869321066, alpha: 0.7)
                 cell.nameLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                 cell.gamesLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                 cell.gamesWord.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -197,14 +197,19 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
                     resultCell.visitorTeam.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
                     resultCell.scoreSeparator.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
                     resultCell.focusStyle = .custom
-
                 }
-                
+
+                if let pointsCell = pointsTableView.cellForRow(at: previousIndexPath) as? UserPointsCell {
+                    pointsCell.contentView.layer.shadowOpacity = 0
+                    pointsCell.backgroundColor = .clear
+                    pointsCell.pointsLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                    pointsCell.ptsLabel.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                    pointsCell.focusStyle = .custom
+                }
             }
-            
             if let indexPath = context.nextFocusedIndexPath,
                 let cell = tableView.cellForRow(at: indexPath) as? UserGuessTableViewCell {
-                cell.backgroundColor = #colorLiteral(red: 0.869321066, green: 0.869321066, blue: 0.869321066, alpha: 1)
+                cell.backgroundColor = #colorLiteral(red: 0.869321066, green: 0.869321066, blue: 0.869321066, alpha: 0.7)
                 cell.homeScore.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                 cell.visitorScore.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                 cell.visitorLayer.backgroundColor = .clear
@@ -215,7 +220,7 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.focusStyle = .custom
                 
                 if let resultCell = resultsTableView.cellForRow(at: indexPath) as? ResultsTableViewCell {
-                    resultCell.backgroundColor = #colorLiteral(red: 0.869321066, green: 0.869321066, blue: 0.869321066, alpha: 1)
+                    resultCell.backgroundColor = #colorLiteral(red: 0.869321066, green: 0.869321066, blue: 0.869321066, alpha: 0.7)
                     resultCell.homeScore.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                     resultCell.visitorScore.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                     resultCell.visitorLayer.backgroundColor = .clear
@@ -224,6 +229,14 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
                     resultCell.visitorTeam.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                     resultCell.scoreSeparator.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                     resultCell.focusStyle = .custom
+                }
+
+                if let pointsCell = pointsTableView.cellForRow(at: indexPath) as? UserPointsCell {
+                    pointsCell.contentView.layer.shadowOpacity = 0
+                    pointsCell.backgroundColor = #colorLiteral(red: 0.869321066, green: 0.869321066, blue: 0.869321066, alpha: 0.7)
+                    pointsCell.pointsLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                    pointsCell.ptsLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                    pointsCell.focusStyle = .custom
                 }
             }
         }
