@@ -33,6 +33,6 @@ class UserPersistence {
     static func updateUsers(_ newValue : [LocalUser]) {
         _users = newValue
         let defaults = UserDefaults.standard
-        defaults.set(_users, forKey: userDefaultsKey)
+        //defaults.set(_users, forKey: userDefaultsKey)
     }
 }

@@ -7,42 +7,76 @@
 //
 
 import UIKit
-import TvOSScribble
 
 class AddBetViewController: UIViewController, UITextFieldDelegate {
     
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var teamOneScore: UITextField!
     @IBOutlet weak var teamTwoScore: UITextField!
+    @IBOutlet weak var teamOneLabel: UILabel!
+    @IBOutlet weak var teamTwoLabel: UILabel!
     
+    var match : Match?
     var users = UserPersistence.users
-    
     var selectedUser : LocalUser? = nil
+    var addBetPresenter : AddBetPresenter!
+    
+    @IBOutlet weak var userInfoCollectionView: UICollectionView!
+    var leftFocusGuide = UIFocusGuide()
+    var rightFocusGuide = UIFocusGuide()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let gestureRecognizer = TvOSScribbleGestureRecognizer(target: self, action: #selector(AddBetViewController.gestureDidRecognizer))
+        setupFocusGuide()
         
-        view.addGestureRecognizer(gestureRecognizer)
+        teamOneLabel.text = match?.firstTeam.name
+        teamTwoLabel.text = match?.secondTeam.name
+        teamOneScore.placeholder = "\(match!.firstTeam.name) score"
+        teamTwoScore.placeholder = "\(match!.secondTeam.name) score"
     }
     
-    @objc func gestureDidRecognizer(recognizer: TvOSScribbleGestureRecognizer) {
-        guard recognizer.state == .ended else { return }
+    override func viewWillAppear(_ animated: Bool) {
+        addBetPresenter = AddBetPresenter(currentMatch: match!)
+        self.userInfoCollectionView.reloadData()
+        users = UserPersistence.users
+    }
+    
+    func setupFocusGuide() {
+        view.addLayoutGuide(leftFocusGuide)
+        self.leftFocusGuide.leadingAnchor.constraint(equalTo: self.userInfoCollectionView.leadingAnchor).isActive = true
+        self.leftFocusGuide.topAnchor.constraint(equalTo: self.userInfoCollectionView.bottomAnchor).isActive = true
+        self.leftFocusGuide.trailingAnchor.constraint(equalTo: self.nameTextField.leadingAnchor).isActive = true
+        self.leftFocusGuide.bottomAnchor.constraint(equalTo: self.nameTextField.topAnchor).isActive = true
+        leftFocusGuide.preferredFocusedView = nameTextField
         
+        view.addLayoutGuide(rightFocusGuide)
+        self.rightFocusGuide.leadingAnchor.constraint(equalTo: self.nameTextField.trailingAnchor).isActive = true
+        self.rightFocusGuide.topAnchor.constraint(equalTo: self.userInfoCollectionView.bottomAnchor).isActive = true
+        self.rightFocusGuide.trailingAnchor.constraint(equalTo: self.userInfoCollectionView.trailingAnchor).isActive = true
+        self.rightFocusGuide.bottomAnchor.constraint(equalTo: self.nameTextField.topAnchor).isActive = true
+        rightFocusGuide.preferredFocusedView = nameTextField
     }
     
     @IBAction func addBetButtonTouched(_ sender: Any) {
+        var userName : String
+        var newUser : Bool
         
         if let selectedUser = self.selectedUser {
-            // TODO: add bet to selected user
+            userName = selectedUser.name
+            newUser = false
         } else {
-            // TODO: create new user and add bet
+            newUser = true
+            userName = nameTextField.text!
         }
+        
+        let firstScore = Int(teamOneScore.text!)
+        let secondScore = Int(teamTwoScore.text!)
+        
+        addBetPresenter.newBetByUser(with: userName, newUser: newUser, firstTeamScore: firstScore!, secondTeamScore: secondScore!)
         
         self.dismiss(animated: true, completion: nil)
     }
-    
 }
 
 extension AddBetViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -59,6 +93,16 @@ extension AddBetViewController: UICollectionViewDelegate, UICollectionViewDataSo
         cell.nameLabel.text = user.name
         cell.infoLabel.text = "\(user.bets.count) guesses"
         
+        if user.name == selectedUser?.name {
+            cell.backgroundColor =  #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            cell.infoLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            cell.nameLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        } else {
+            cell.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
+            cell.infoLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+            cell.nameLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        }
+        
         return cell
     }
     
@@ -68,11 +112,55 @@ extension AddBetViewController: UICollectionViewDelegate, UICollectionViewDataSo
             selectedUser = nil
             nameTextField.text = ""
             nameTextField.isUserInteractionEnabled = true
+            
+            self.leftFocusGuide.preferredFocusedView = self.nameTextField
+            self.rightFocusGuide.preferredFocusedView = self.nameTextField
+
         } else {
             selectedUser = users[indexPath.row]
             
             nameTextField.text = selectedUser!.name
             nameTextField.isUserInteractionEnabled = false
+            
+            self.leftFocusGuide.preferredFocusedView = self.teamOneScore
+            self.rightFocusGuide.preferredFocusedView = self.teamTwoScore
+
+        }
+        
+        collectionView.reloadData()
+    }
+    
+    // Collection View Focus
+    func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        
+        if collectionView == userInfoCollectionView {
+            if let previousIndexPath = context.previouslyFocusedIndexPath,
+                let cell = collectionView.cellForItem(at: previousIndexPath) as? UserInfoCollectionViewCell {
+                cell.contentView.layer.shadowOpacity = 0
+                cell.contentView.layer.shadowOffset = CGSize(width: 0, height: 0)
+                if self.users[previousIndexPath.row].name == selectedUser?.name {
+                    cell.backgroundColor =  #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                    cell.infoLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                    cell.nameLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                } else {
+                    cell.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.5)
+                    cell.infoLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                    cell.nameLabel.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                }
+                cell.transform = CGAffineTransform(scaleX: 1.0 ,y: 1.0)
+            }
+            
+            if let indexPath = context.nextFocusedIndexPath,
+                let cell = collectionView.cellForItem(at: indexPath) as? UserInfoCollectionViewCell {
+                //cell.contentView.layer.shadowOpacity = 0.6
+                //cell.contentView.layer.shadowOffset = CGSize(width: 0, height: 10)
+                cell.backgroundColor =  #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+                cell.infoLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                cell.nameLabel.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                cell.transform = CGAffineTransform(scaleX: 1.2 ,y: 1.2)
+                collectionView.scrollToItem(at: indexPath, at: [.centeredHorizontally, .centeredVertically], animated: true)
+            }
         }
     }
+    
 }

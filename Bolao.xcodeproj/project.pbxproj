@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		266958FC20B86E6300C88440 /* AddBetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266958FB20B86E6300C88440 /* AddBetViewController.swift */; };
+		266958FE20B86E6D00C88440 /* UserInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 266958FD20B86E6D00C88440 /* UserInfoCollectionViewCell.swift */; };
+		2669590220B8733200C88440 /* AddBetPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2669590120B8733200C88440 /* AddBetPresenter.swift */; };
 		762A5F3520B344B50011E11A /* SectionHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762A5F3420B344B50011E11A /* SectionHeaderCollectionReusableView.swift */; };
 		762A5F3720B349AE0011E11A /* BetsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 762A5F3620B349AE0011E11A /* BetsCollectionViewCell.swift */; };
 		764306D620B10FCE00007390 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 764306D520B10FCE00007390 /* AppDelegate.swift */; };
@@ -47,6 +50,9 @@
 /* Begin PBXFileReference section */
 		14152B2F8B846FC77F3DAD82 /* Pods-Bolao.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bolao.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Bolao/Pods-Bolao.debug.xcconfig"; sourceTree = "<group>"; };
 		1D9424014D9D2E2BFEF32849 /* Pods_Bolao.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Bolao.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		266958FB20B86E6300C88440 /* AddBetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddBetViewController.swift; sourceTree = "<group>"; };
+		266958FD20B86E6D00C88440 /* UserInfoCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserInfoCollectionViewCell.swift; sourceTree = "<group>"; };
+		2669590120B8733200C88440 /* AddBetPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBetPresenter.swift; sourceTree = "<group>"; };
 		2ABDD449AE3D875BD18E3880 /* Pods-Bolao.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Bolao.release.xcconfig"; path = "Pods/Target Support Files/Pods-Bolao/Pods-Bolao.release.xcconfig"; sourceTree = "<group>"; };
 		762A5F3420B344B50011E11A /* SectionHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
 		762A5F3620B349AE0011E11A /* BetsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BetsCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -198,6 +204,7 @@
 		764306ED20B1107A00007390 /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				266958FB20B86E6300C88440 /* AddBetViewController.swift */,
 				7643070120B11AB500007390 /* GameOverviewViewController.swift */,
 				98FD903E20B7081500391983 /* RankViewController.swift */,
 			);
@@ -210,6 +217,7 @@
 				984FF26220B8398700C6F5CE /* RankViewPresenter.swift */,
 				7643070620B1F02900007390 /* FocusableView.swift */,
 				98FD903A20B603D200391983 /* GameOverviewPresenter.swift */,
+				2669590120B8733200C88440 /* AddBetPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -236,6 +244,7 @@
 		7643070320B1201100007390 /* CellsAndSections */ = {
 			isa = PBXGroup;
 			children = (
+				266958FD20B86E6D00C88440 /* UserInfoCollectionViewCell.swift */,
 				7643070420B1204D00007390 /* GamesCollectionViewCell.swift */,
 				762A5F3420B344B50011E11A /* SectionHeaderCollectionReusableView.swift */,
 				762A5F3620B349AE0011E11A /* BetsCollectionViewCell.swift */,
@@ -342,10 +351,12 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-Bolao/Pods-Bolao-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/TvOSScribble/TvOSScribble.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TvOSScribble.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -385,13 +396,16 @@
 				7643070520B1204D00007390 /* GamesCollectionViewCell.swift in Sources */,
 				98FD904320B73FAA00391983 /* UserGuessTableViewCell.swift in Sources */,
 				764306F820B1110000007390 /* Match.swift in Sources */,
+				266958FC20B86E6300C88440 /* AddBetViewController.swift in Sources */,
 				764306F120B110BD00007390 /* User.swift in Sources */,
 				7643070720B1F02900007390 /* FocusableView.swift in Sources */,
 				7643070020B1114D00007390 /* ScoreRules.swift in Sources */,
+				2669590220B8733200C88440 /* AddBetPresenter.swift in Sources */,
 				98FD904520B754C700391983 /* ResultsTableViewCell.swift in Sources */,
 				764306F520B110E900007390 /* Championship.swift in Sources */,
 				764306F320B110D300007390 /* League.swift in Sources */,
 				762A5F3520B344B50011E11A /* SectionHeaderCollectionReusableView.swift in Sources */,
+				266958FE20B86E6D00C88440 /* UserInfoCollectionViewCell.swift in Sources */,
 				98FD904720B799EC00391983 /* UserPointsCell.swift in Sources */,
 				98FD903520B5D5D400391983 /* UserPersistence.swift in Sources */,
 				98FD903F20B7081500391983 /* RankViewController.swift in Sources */,
@@ -544,10 +558,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QVUK5SZQWD;
 				INFOPLIST_FILE = Bolao/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TamaraCampos.Bolao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -564,10 +575,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = QVUK5SZQWD;
 				INFOPLIST_FILE = Bolao/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = TamaraCampos.Bolao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
