@@ -166,6 +166,7 @@ class GameOverviewViewController: UIViewController {
         let formatter = DateFormatter()
         formatter.dateStyle = .short
         formatter.timeStyle = .none
+        matchesByDay = [:]
         for match in matches {
             let date = NSDate(timeIntervalSince1970: match.timeInterval) as Date
             let dateString = formatter.string(from: date)
