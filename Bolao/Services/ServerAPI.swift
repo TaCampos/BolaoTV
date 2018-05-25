@@ -11,7 +11,7 @@ import Foundation
 
 class ServerAPI {
     
-    static let baseURL = "http://10.40.48.97:8080/"
+    static let baseURL = "http://10.40.48.82:8080/"
 
     
     static func fetchAll<T: Codable & DBEntity>(completion: @escaping ([T]?) -> Void) {
@@ -40,6 +40,7 @@ class ServerAPI {
                     do {
                         let result = try JSONDecoder().decode([T].self, from: jsonData)
                         completion(result)
+                        return
                     } catch {
                         print(error)
                     }

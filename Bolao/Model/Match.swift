@@ -16,12 +16,12 @@ class Match: Codable, DBEntity {
     private(set) var playoff: Bool
     private(set) var stadium: String
     private(set) var city: String
-    private(set) var championshipGroup: String
+    private(set) var championshipGroup: String?
     
     // MARK: Relationship
     private(set) var firstTeam: Team
     private(set) var secondTeam: Team
-    private(set) var score: MatchScore
+    private(set) var score: MatchScore?
 
     enum CodingKeys: String, CodingKey {
         case id = "id"
@@ -45,10 +45,10 @@ class Match: Codable, DBEntity {
         playoff = try values.decode(Bool.self, forKey: .playoff)
         firstTeam = try values.decode(Team.self, forKey: .firstTeam)
         secondTeam = try values.decode(Team.self, forKey: .secondTeam)
-        score = try values.decode(MatchScore.self, forKey: .score)
+        score = try values.decode(MatchScore?.self, forKey: .score)
         stadium = try values.decode(String.self, forKey: .stadium)
         city = try values.decode(String.self, forKey: .city)
-        championshipGroup = try values.decode(String.self, forKey: .city)
+        championshipGroup = try values.decode(String?.self, forKey: .championshipGroup)
     }
     
     init(id: Int64, timeInterval: Double, championshipRound: String, playoff: Bool, firstTeam: Team, secondTeam: Team, score: MatchScore, stadium : String, city: String, group: String) {

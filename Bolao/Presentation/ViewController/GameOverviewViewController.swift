@@ -39,10 +39,9 @@ class GameOverviewViewController: UIViewController {
     private var displayingMatch: Match!
     private var userNamesAndBets: [String: (Int, Int)] = [:]
     private var ranking: [(String, Int)] = []
-
-    // first day and number of games in that day
-    private var gamesDay: [String] = ["14 Jun"]
-    private var numberOfGamesByDay: [Int] = [0]
+    
+    // dictionary with matches by day
+    private var matchesByDay: [String : [Match]] = [:]
 
     // array to keep user namesBets
     private var userNamesBets:[String] = []
@@ -62,24 +61,28 @@ class GameOverviewViewController: UIViewController {
             self.matches = matches
             if(matches.count > 0) {
                 self.displayingMatch = matches[0]
+                self.displayingMatch(match: matches[0])
                 self.presenter.updateCurrentMatch(newValue: matches[0])
+                
+                // populate user and bets
+                self.userNamesAndBets = self.presenter.usersNamesAndBets()
+                
+                // if game is over, we have a ranking.
+                // vector of tubles ordered by second term - position
+                if let betsRanking = self.presenter.allUsersRank() {
+                    self.hasRanking = true
+                    self.ranking = betsRanking.sorted(by: { $0.1 < $1.1 })
+                } else {
+                    self.userNamesBets = Array(self.userNamesAndBets.keys)
+                }
+                
+                // function to calculate number of games by day
+                self.getMatchesByDay()
+                self.gamesCollectionView.reloadData()
             }
         }
 
-        // populate user and bets
-        self.userNamesAndBets = presenter.usersNamesAndBets()
-
-        // if game is over, we have a ranking.
-        // vector of tubles ordered by second term - position
-        if let betsRanking = presenter.allUsersRank() {
-            self.hasRanking = true
-            self.ranking = betsRanking.sorted(by: { $0.1 < $1.1 })
-        } else {
-            self.userNamesBets = Array(userNamesAndBets.keys)
-        }
-
-        // function to calculate number of games by day
-        calculateNumberOfGamesByDay()
+        
     }
 
 
@@ -136,68 +139,75 @@ class GameOverviewViewController: UIViewController {
         dateFormatter.dateFormat = "dd MMM"
 
         let stringDate = dateFormatter.string(from: date as Date)
-        let dateToString = dateFormatter.date(from: stringDate)
-        let dateGame = dateFormatter.string(from: dateToString!)
-
-        return dateGame
+        
+        return stringDate
     }
 
 
-    /// Function to calculate number of games in a day
-    /// get the day and see if is the same day. If it is, sum the number of games
-    /// otherwise, append new day and game. This is only possible because matches
-    /// is ordered by date
-    func calculateNumberOfGamesByDay() {
-
-        var i = 0
+    func getMatchesByDay() {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
         for match in matches {
-
-            let date = getDateFromTimeInterval(timeInterval: match.timeInterval)
-
-            if (date == gamesDay[i]) {
-                numberOfGamesByDay[i] += 1
+            let date = NSDate(timeIntervalSince1970: match.timeInterval) as Date
+            let dateString = formatter.string(from: date)
+            if matchesByDay[dateString] == nil {
+                matchesByDay[dateString] = [match]
             } else {
-                i += 1
-                gamesDay.append(date)
-                numberOfGamesByDay.append(1)
+                matchesByDay[dateString]!.append(match)
             }
         }
     }
+    
+    func matchesForSection(_ section: Int) -> [Match] {
+        let formatter = DateFormatter()
+        formatter.dateStyle = .short
+        formatter.timeStyle = .none
+        let days = matchesByDay.keys.sorted { (date1String, date2String) -> Bool in
+            let date1 = formatter.date(from: date1String)!
+            let date2 = formatter.date(from: date2String)!
+            return date1 < date2
+        }
+        let day = days[section]
+        return matchesByDay[day] ?? []
+    }
 
-    func displayingMatch(matchIndex: Int) {
-        self.firstTeamName.text = matches[matchIndex].firstTeam.name
-        self.secondTeamName.text = matches[matchIndex].secondTeam.name
+    func displayingMatch(match: Match) {
+        
+        self.firstTeamName.text = match.firstTeam.name
+        self.secondTeamName.text = match.secondTeam.name
 
-        let firstTeamScore = matches[matchIndex].score.firstTeamScore
-        let secondTeamScore = matches[matchIndex].score.secondTeamScore
+        let firstTeamScore = match.score?.firstTeamScore
+        let secondTeamScore = match.score?.secondTeamScore
 
-        self.firstTeamScore.text = String(describing: firstTeamScore)
-        self.secondTeamName.text = String(describing: secondTeamScore)
+        if firstTeamScore == nil || secondTeamScore == nil {
+            self.firstTeamScore.text = " "
+            self.secondTeamScore.text = " "
+        } else {
+            self.firstTeamScore.text = "\(firstTeamScore!)"
+            self.secondTeamScore.text = "\(secondTeamScore!)"
+        }
 
-        self.stadiumName.text = matches[matchIndex].stadium
-        self.cityName.text = matches[matchIndex].city
+        self.stadiumName.text = match.stadium
+        self.cityName.text = match.city
 
-        self.championshipRound.text = matches[matchIndex].championshipRound
+        if match.championshipGroup != nil {
+            self.championshipRound.text = "Group " + match.championshipGroup!
+        } else {
+            self.championshipRound.text = match.championshipRound
+        }
 
         // date formatter
-        let date = NSDate(timeIntervalSince1970: matches[matchIndex].timeInterval)
+        let date = NSDate(timeIntervalSince1970: match.timeInterval) as Date
 
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy"
-
         dateFormatter.dateFormat = "EEEE, MMMM dd"
-        let stringDate = dateFormatter.string(from: date as Date)
-        let dateToString = dateFormatter.date(from: stringDate)
-        let gameSchedule = dateFormatter.string(from: dateToString!)
+        let stringDate = dateFormatter.string(from: date)
 
-        self.gameSchedule.text = gameSchedule
-
-        // hour formatter
-        let calendar = Calendar.current
-        let hour = calendar.component(.hour, from: date as Date)
-        let minutes = calendar.component(.minute, from: date as Date)
-
-        self.gameHour.text = "\(String(describing: hour)):\(String(describing: minutes))"
+        self.gameSchedule.text = stringDate
+        
+        dateFormatter.dateFormat = "HH:mm"
+        self.gameHour.text = dateFormatter.string(from: date)
     }
 }
 
@@ -206,7 +216,7 @@ extension GameOverviewViewController: UICollectionViewDelegate, UICollectionView
     func numberOfSections(in collectionView: UICollectionView) -> Int {
 
         if collectionView == gamesCollectionView {
-            return gamesDay.count
+            return matchesByDay.count
         }
         else if collectionView == betsCollectionView {
             return 1
@@ -218,7 +228,7 @@ extension GameOverviewViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
         if collectionView == gamesCollectionView {
-            return numberOfGamesByDay[section]
+            return matchesForSection(section).count
         } else if collectionView == betsCollectionView {
             return userNamesAndBets.count
         }
@@ -233,18 +243,19 @@ extension GameOverviewViewController: UICollectionViewDelegate, UICollectionView
 
             cell.layer.cornerRadius = 8
             cell.clipsToBounds = true
+            
+            let match = matchesForSection(indexPath.section)[indexPath.row]
 
             // get first and second team for the macth
-            let firstTeam = matches[indexPath.row].firstTeam
-            let secondTeam = matches[indexPath.row].secondTeam
+            let firstTeam = match.firstTeam
+            let secondTeam = match.secondTeam
 
             // get flags image names
-            let firstTeamImage = firstTeam.name + "First"
-            let secondTeamImage = firstTeam.name + "Second"
+            let firstTeamImage = firstTeam.name.replacingOccurrences(of: " ", with: "") + "First"
+            let secondTeamImage = secondTeam.name.replacingOccurrences(of: " ", with: "") + "Second"
 
-
-            cell.teamOneImage.image = UIImage(named: firstTeamImage)
-            cell.teamTwoImage.image = UIImage(named: secondTeamImage)
+            cell.teamOneImage.image = UIImage(named: firstTeamImage)!
+            cell.teamTwoImage.image = UIImage(named: secondTeamImage)!
 
             cell.nameTeamOne.text = firstTeam.name
             cell.nameTeamTwo.text = secondTeam.name
@@ -298,8 +309,13 @@ extension GameOverviewViewController: UICollectionViewDelegate, UICollectionView
 
     // Collection View Focus
     func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-
+        
         if collectionView == gamesCollectionView {
+            let section = context.nextFocusedIndexPath?.section ?? 0
+            let row = context.nextFocusedIndexPath?.row ?? 0
+            let match = matchesForSection(section)[row]
+            displayingMatch(match: match)
+            
             if let previousIndexPath = context.previouslyFocusedIndexPath,
                 let cell = collectionView.cellForItem(at: previousIndexPath) {
                 cell.contentView.layer.shadowOpacity = 0
@@ -345,10 +361,17 @@ extension GameOverviewViewController: UICollectionViewDelegate, UICollectionView
             let header = gamesCollectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "sectionHeader", for: indexPath) as! SectionHeaderCollectionReusableView
 
             // get title header - split the date to customize
-            let date = gamesDay[indexPath.section]
-            let dateArray = date.components(separatedBy: " ")
+            let match = matchesForSection(indexPath.section)[0]
+            let date = NSDate(timeIntervalSince1970: match.timeInterval) as Date
+            
+            let day = Calendar.current.component(.day, from: date)
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMMM"
+            let month = dateFormatter.string(from: date)
 
-            let dateString = attributedStringForDate(day: dateArray[0], month: dateArray[1])
+            let dateString = attributedStringForDate(day: "\(day)", month: month)
+            
             header.gameDateLabel.attributedText = dateString
 
             return header
@@ -361,8 +384,9 @@ extension GameOverviewViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         if collectionView == gamesCollectionView {
-            self.displayingMatch = matches[indexPath.row]
-            self.displayingMatch(matchIndex: indexPath.row)
+            let match = matchesForSection(indexPath.section)[indexPath.row]
+            self.displayingMatch = match
+            self.displayingMatch(match: match)
 
             presenter.updateCurrentMatch(newValue: displayingMatch)
         }
