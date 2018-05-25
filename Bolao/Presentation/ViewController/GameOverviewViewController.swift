@@ -193,6 +193,14 @@ class GameOverviewViewController: UIViewController {
     func displayingMatch(match: Match) {
         self.displayingMatch = match
         
+        if Date().timeIntervalSince1970 >= match.timeInterval {
+            addButton.isEnabled = false
+            addButton.isOpaque = true
+        } else {
+            addButton.isEnabled = true
+            addButton.isOpaque = false
+        }
+        
         self.firstTeamName.text = match.firstTeam.name
         self.secondTeamName.text = match.secondTeam.name
 
@@ -330,9 +338,11 @@ extension GameOverviewViewController: UICollectionViewDelegate, UICollectionView
     func collectionView(_ collectionView: UICollectionView, didUpdateFocusIn context: UICollectionViewFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
         
         if collectionView == gamesCollectionView {
-            let section = context.nextFocusedIndexPath?.section ?? 0
-            let row = context.nextFocusedIndexPath?.row ?? 0
-            let match = matchesForSection(section)[row]
+            var match = displayingMatch!
+            if let section = context.nextFocusedIndexPath?.section, let row = context.nextFocusedIndexPath?.row {
+                match = matchesForSection(section)[row]
+            }
+            
             displayingMatch(match: match)
             
             if let previousIndexPath = context.previouslyFocusedIndexPath,
