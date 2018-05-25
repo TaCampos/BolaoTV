@@ -40,6 +40,8 @@ class GameOverviewViewController: UIViewController {
     private var userNamesAndBets: [String: (Int, Int)] = [:]
     private var ranking: [(String, Int)] = []
     
+    var focusGuide: UIFocusGuide!
+    
     // dictionary with matches by day
     private var matchesByDay: [String : [Match]] = [:]
 
@@ -52,6 +54,16 @@ class GameOverviewViewController: UIViewController {
     // MARK: Functions
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        focusGuide = UIFocusGuide()
+        view.addLayoutGuide(focusGuide)
+        
+        focusGuide.leadingAnchor.constraint(equalTo: addButton.trailingAnchor).isActive = true
+        focusGuide.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+        focusGuide.topAnchor.constraint(equalTo: addButton.topAnchor).isActive = true
+        focusGuide.bottomAnchor.constraint(equalTo: addButton.bottomAnchor).isActive = true
+        
+        focusGuide.preferredFocusedView = addButton
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

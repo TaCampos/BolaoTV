@@ -12,10 +12,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Game Overview View Controller-->
+        <!--Overview-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="GameOverviewViewController" customModule="Bolao" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Overview" id="BYZ-38-t0r" customClass="GameOverviewViewController" customModule="Bolao" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -31,7 +31,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iQa-V9-QtA">
-                                        <rect key="frame" x="145" y="227" width="480" height="324"/>
+                                        <rect key="frame" x="145" y="227" width="576" height="324"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🏟" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fRf-Rb-4dT">
                                                 <rect key="frame" x="40" y="30" width="45" height="45"/>
@@ -117,7 +117,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iaD-pZ-mI6">
-                                        <rect key="frame" x="185" y="626" width="168" height="92"/>
+                                        <rect key="frame" x="185" y="626" width="202" height="110"/>
                                         <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="iaD-pZ-mI6" secondAttribute="height" multiplier="2:1.1" id="gB7-d5-LQO"/>
@@ -132,7 +132,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Bet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B0O-Yq-7Gg">
-                                        <rect key="frame" x="223" y="728" width="92" height="30"/>
+                                        <rect key="frame" x="240" y="746" width="92" height="30"/>
                                         <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
                                         <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -390,7 +390,7 @@ JUN</string>
                                     <constraint firstItem="yYq-uj-GQc" firstAttribute="height" secondItem="ea5-k0-8FD" secondAttribute="height" multiplier="0.2" id="VxP-ju-jox"/>
                                     <constraint firstItem="yYq-uj-GQc" firstAttribute="centerX" secondItem="ea5-k0-8FD" secondAttribute="centerX" id="Ydg-Mf-ckp"/>
                                     <constraint firstItem="iaD-pZ-mI6" firstAttribute="leading" secondItem="qHM-9Y-smO" secondAttribute="leading" id="fLg-mX-zt4"/>
-                                    <constraint firstItem="iQa-V9-QtA" firstAttribute="width" secondItem="ea5-k0-8FD" secondAttribute="width" multiplier="0.25" id="fko-Jx-QPN"/>
+                                    <constraint firstItem="iQa-V9-QtA" firstAttribute="width" secondItem="ea5-k0-8FD" secondAttribute="width" multiplier="0.3" id="fko-Jx-QPN"/>
                                     <constraint firstItem="iQa-V9-QtA" firstAttribute="height" secondItem="ea5-k0-8FD" secondAttribute="height" multiplier="0.3" id="n5f-Vz-bcW"/>
                                     <constraint firstItem="yYq-uj-GQc" firstAttribute="width" secondItem="ea5-k0-8FD" secondAttribute="width" multiplier="0.9" id="sFN-fB-BHw"/>
                                     <constraint firstAttribute="bottom" secondItem="yYq-uj-GQc" secondAttribute="bottom" constant="70" id="u4b-mG-nqM"/>
