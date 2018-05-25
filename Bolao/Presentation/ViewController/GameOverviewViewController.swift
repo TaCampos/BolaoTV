@@ -65,6 +65,12 @@ class GameOverviewViewController: UIViewController {
         
         focusGuide.preferredFocusedView = addButton
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destinationVC = segue.destination as? AddBetViewController {
+            destinationVC.match = self.displayingMatch
+        }
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         setUpScreenLayout()
