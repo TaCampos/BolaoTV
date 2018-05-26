@@ -18,6 +18,14 @@ class RankViewController: UIViewController {
     var usersHistoricAndRank: ([((key: String, value: ([(LocalBet, MatchScore?)], Double)), Int)])? = nil
     var currentUserBetsAndResults: [(LocalBet, MatchScore?)]? = nil
     var currentUserScores: [Double?]? = nil
+
+    var flagsEmoji = ["Russia" : "🇷🇺", "SaudiArabia" : "🇸🇦",
+                        "Egypt" : "🇪🇬", "Uruguay" : "🇺🇾", "Portugal" : "🇵🇹", "Spain" : "🇪🇸", "Morocco" : "🇲🇦",
+                        "Iran" : "🇮🇷", "France" : "🇫🇷", "Australia" : "🇦🇺", "Peru" : "🇵🇪", "Denmark" : "🇩🇰",
+                        "Argentina" : "🇦🇷", "Iceland" : "🇮🇸", "Croatia" : "🇭🇷", "Nigeria" : "🇳🇬", "Brazil" : "🇧🇷",
+                        "Switzerland" : "🇨🇭", "CostaRica" : "🇹🇭", "Serbia" : "🇷🇸", "Germany" : "🇩🇪", "Mexico" : "🇲🇽",
+                        "Sweden" : "🇸🇪", "KoreaRepublic" : "🇰🇷", "Belgium" : "🇧🇪", "Panama" : "🇵🇦", "Tunisia" : "🇹🇳",
+                        "England" : "🏴󠁧󠁢󠁥󠁮󠁧󠁿", "Poland" : "🇵🇱", "Senegal" : "🇸🇳", "Colombia" : "🇨🇴", "Japan" : "🇯🇵" ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -104,8 +112,9 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
             
             cell.homeScore.text = String(currentUserBetsAndResults![indexPath.row].0.betValues.firstTeamScore)
             cell.visitorScore.text = String(currentUserBetsAndResults![indexPath.row].0.betValues.secondTeamScore)
-            cell.homeTeam.text = String(currentUserBetsAndResults![indexPath.row].0.match.firstTeam.name)
-            cell.visitorTeam.text = String(currentUserBetsAndResults![indexPath.row].0.match.secondTeam.name)
+
+            cell.homeTeam.text = flagsEmoji[currentUserBetsAndResults![indexPath.row].0.match.firstTeam.name]
+            cell.visitorTeam.text = flagsEmoji[currentUserBetsAndResults![indexPath.row].0.match.secondTeam.name]
             return cell
             
         case resultsTableView:
@@ -118,8 +127,8 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.homeScore.text = ""
                 cell.visitorScore.text = ""
             }
-            cell.homeTeam.text = String(currentUserBetsAndResults![indexPath.row].0.match.firstTeam.name)
-            cell.visitorTeam.text = String(currentUserBetsAndResults![indexPath.row].0.match.secondTeam.name)
+            cell.homeTeam.text = flagsEmoji[currentUserBetsAndResults![indexPath.row].0.match.firstTeam.name]
+            cell.visitorTeam.text = flagsEmoji[currentUserBetsAndResults![indexPath.row].0.match.secondTeam.name]
             return cell
             
         case pointsTableView:
@@ -192,8 +201,8 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.visitorScore.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
                 cell.visitorLayer.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6)
                 cell.homeLayer.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6)
-                cell.homeTeam.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                cell.visitorTeam.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                //cell.homeTeam.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                //cell.visitorTeam.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
                 cell.scoreSeparator.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
                 cell.focusStyle = .custom
                 
@@ -204,8 +213,8 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
                     resultCell.visitorScore.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
                     resultCell.visitorLayer.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6)
                     resultCell.homeLayer.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.6)
-                    resultCell.homeTeam.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-                    resultCell.visitorTeam.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                    //resultCell.homeTeam.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+                    //resultCell.visitorTeam.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
                     resultCell.scoreSeparator.textColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
                     resultCell.focusStyle = .custom
                 }
@@ -225,8 +234,8 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.visitorScore.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                 cell.visitorLayer.backgroundColor = .clear
                 cell.homeLayer.backgroundColor = .clear
-                cell.homeTeam.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-                cell.visitorTeam.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                //cell.homeTeam.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                //cell.visitorTeam.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                 cell.scoreSeparator.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                 cell.focusStyle = .custom
                 
@@ -236,8 +245,8 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
                     resultCell.visitorScore.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                     resultCell.visitorLayer.backgroundColor = .clear
                     resultCell.homeLayer.backgroundColor = .clear
-                    resultCell.homeTeam.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-                    resultCell.visitorTeam.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                    //resultCell.homeTeam.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+                    //resultCell.visitorTeam.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                     resultCell.scoreSeparator.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
                     resultCell.focusStyle = .custom
                 }
