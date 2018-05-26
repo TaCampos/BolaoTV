@@ -103,6 +103,15 @@ class GameOverviewViewController: UIViewController {
             focusGuide.preferredFocusEnvironments = [addButton]
         }
     }
+    @IBAction func addButtonTouched(_ sender: Any) {
+        if self.displayingMatch == nil {
+            let alert = UIAlertController(title: "No match selected", message: "Select a match to add a bet. If none is presented, there are no upcoming matches", preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            performSegue(withIdentifier: "addBetSegue", sender: self)
+        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? AddBetViewController {
