@@ -15,8 +15,8 @@ class RankViewController: UIViewController {
     @IBOutlet weak var resultsTableView: UITableView!
     @IBOutlet weak var pointsTableView: UITableView!
     
-    var usersHistoricAndRank: ([((key: String, value: ([(MatchScore, MatchScore?)], Double)), Int)])? = nil
-    var currentUserBetsAndResults: [(MatchScore, MatchScore?)]? = nil
+    var usersHistoricAndRank: ([((key: String, value: ([(LocalBet, MatchScore?)], Double)), Int)])? = nil
+    var currentUserBetsAndResults: [(LocalBet, MatchScore?)]? = nil
     var currentUserScores: [Double?]? = nil
     
     override func viewDidLoad() {
@@ -88,18 +88,18 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
             
             let user = usersHistoricAndRank![indexPath.row].0
             let rank = usersHistoricAndRank![indexPath.row].1
-            currentUserBetsAndResults = user.value.0
-            currentUserScores = RankViewPresenter.scoreOfUserInEachMatch(betsAndResults: user.value.0)
             cell.nameLabel.text = user.key
             cell.positionLabel.text = String(rank)
-            cell.positionLabel.text = String(user.value.1)
-            
+            cell.pointsLabel.text = String(user.value.1)
+            cell.gamesLabel.text = String(user.value.0.count)
             return cell
         case guessesTableView:
             let cell = guessesTableView.dequeueReusableCell(withIdentifier: "UserGuessCell", for: indexPath) as! UserGuessTableViewCell
             
-            cell.homeScore.text = String(currentUserBetsAndResults![indexPath.row].0.firstTeamScore)
-            cell.visitorScore.text = String(currentUserBetsAndResults![indexPath.row].0.secondTeamScore)
+            cell.homeScore.text = String(currentUserBetsAndResults![indexPath.row].0.betValues.firstTeamScore)
+            cell.visitorScore.text = String(currentUserBetsAndResults![indexPath.row].0.betValues.secondTeamScore)
+            cell.homeTeam.text = String(currentUserBetsAndResults![indexPath.row].0.match.firstTeam.name)
+            cell.visitorTeam.text = String(currentUserBetsAndResults![indexPath.row].0.match.secondTeam.name)
             return cell
             
         case resultsTableView:
@@ -112,7 +112,8 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.homeScore.text = ""
                 cell.visitorScore.text = ""
             }
-            
+            cell.homeTeam.text = String(currentUserBetsAndResults![indexPath.row].0.match.firstTeam.name)
+            cell.visitorTeam.text = String(currentUserBetsAndResults![indexPath.row].0.match.secondTeam.name)
             return cell
             
         case pointsTableView:
@@ -168,6 +169,9 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.transform = CGAffineTransform(scaleX: 1.1 ,y: 1.1)
                 cell.focusStyle = .custom
                 tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.middle, animated: true)
+                let user = usersHistoricAndRank![indexPath.row].0
+                self.currentUserBetsAndResults = user.value.0
+                self.currentUserScores = RankViewPresenter.scoreOfUserInEachMatch(betsAndResults: user.value.0)
                 guessesTableView.reloadData()
                 resultsTableView.reloadData()
                 pointsTableView.reloadData()

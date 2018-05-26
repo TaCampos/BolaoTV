@@ -10,7 +10,7 @@ import Foundation
 
 class RankViewPresenter {
     
-    static func allUsersHistoricAndRank(completion: @escaping ([((key: String, value: ([(MatchScore, MatchScore?)], Double)), Int)]) -> ()) {
+    static func allUsersHistoricAndRank(completion: @escaping ([((key: String, value: ([(LocalBet, MatchScore?)], Double)), Int)]) -> ()) {
         
         
         ServerAPI.fetchAll { (matches: [Match]?) in
@@ -22,7 +22,7 @@ class RankViewPresenter {
                 })
                 var rank = 1
                 var lastScore: Double? = nil
-                var historicAndRank = [((key: String, value: ([(MatchScore, MatchScore?)], Double)), Int)]()
+                var historicAndRank = [((key: String, value: ([(LocalBet, MatchScore?)], Double)), Int)]()
                 for historic in sortedHistoric {
                     
                     if(lastScore != nil && historic.value.1 < lastScore!){
@@ -36,8 +36,8 @@ class RankViewPresenter {
         }
     }
     
-    static func allUsersHistoric(matches: [Match]) -> [String: ([(MatchScore, MatchScore?)], Double)] {
-        var historic = [String: ([(MatchScore, MatchScore?)], Double)]()
+    static func allUsersHistoric(matches: [Match]) -> [String: ([(LocalBet, MatchScore?)], Double)] {
+        var historic = [String: ([(LocalBet, MatchScore?)], Double)]()
         let users = UserPersistence.users
         let sortedMatches = matches.sorted(by: { (lhs, rhs) -> Bool in
             return lhs.timeInterval < rhs.timeInterval
@@ -48,13 +48,13 @@ class RankViewPresenter {
             if(userScore == nil) {
                 userScore = 0
             }
-            var allMatchesBetsAndResults = [(MatchScore, MatchScore?)]()
+            var allMatchesBetsAndResults = [(LocalBet, MatchScore?)]()
             for match in sortedMatches {
                 let bet = bets.first(where: { (bet) -> Bool in
                     return bet.match.id == match.id
                 })
                 if(bet != nil) {
-                    let matchBetAndResult = (bet!.betValues, match.score)
+                    let matchBetAndResult = (bet!, match.score)
                     allMatchesBetsAndResults.append(matchBetAndResult)
                     
                 }
@@ -65,8 +65,23 @@ class RankViewPresenter {
         return historic
     }
     
-    static func scoreOfUserInEachMatch(betsAndResults: [(MatchScore, MatchScore?)]) -> [Double?]? {
+    static func scoreOfUserInEachMatch(betsAndResults: [(LocalBet, MatchScore?)]) -> [Double?]? {
         
+        var scores = [Double?]()
+        var gotAScore = false
+        for (bet, matchResult) in betsAndResults {
+            if(matchResult != nil) {
+                let score = ScoreCalculator.calculateBetScore(betResult: bet.betValues, result: matchResult!)
+                scores.append(score)
+                gotAScore = true
+            } else {
+                scores.append(nil)
+            }
+        }
+        
+        if(gotAScore) {
+            return scores
+        }
         return nil
     }
 }
