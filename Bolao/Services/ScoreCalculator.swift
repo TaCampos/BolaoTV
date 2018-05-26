@@ -51,7 +51,7 @@ class ScoreCalculator {
         return userScores
     }
     
-    private static func calculateBetScore(betResult: MatchScore, result: MatchScore) -> Double {
+    static func calculateBetScore(betResult: MatchScore, result: MatchScore) -> Double {
         
         // check if it was the correct winner
         if (betResult.firstTeamScore > betResult.secondTeamScore && result.firstTeamScore > result.secondTeamScore)

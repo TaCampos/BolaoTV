@@ -12,8 +12,13 @@ import UIKit
 class UserPointsCell: UITableViewCell {
     
     @IBOutlet weak var pointsLabel: UILabel!
+    @IBOutlet weak var ptsLabel: UILabel!
+
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        self.layer.cornerRadius = 15
+        self.layer.masksToBounds = true
         
     }
     

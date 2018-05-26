@@ -22,8 +22,8 @@ class LocalBet: Codable {
     
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        betValues = try values.decode(MatchScore.self, forKey: .betValues)
         match = try values.decode(Match.self, forKey: .match)
+        betValues = try values.decode(MatchScore.self, forKey: .betValues)
         score = try values.decode(Double?.self, forKey: .score)
     }
     

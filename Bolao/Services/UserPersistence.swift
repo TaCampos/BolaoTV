@@ -27,7 +27,7 @@ class UserPersistence {
     
     static private func loadUsers() {
         let defaults = UserDefaults.standard
-        let jsonData = defaults.object(forKey: userDefaultsKey) as? Data
+        let jsonData = defaults.data(forKey: userDefaultsKey)
         if(jsonData != nil) {
             let jsonDecoder = JSONDecoder()
             _users = try? jsonDecoder.decode([LocalUser].self, from: jsonData!)

@@ -46,6 +46,18 @@ class MatchScore: Codable, DBEntity {
         self.secondTeamScore = secondTeamScore
     }
 
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(firstTeamScore, forKey: .firstTeamScore)
+        try container.encode(secondTeamScore, forKey: .secondTeamScore)
+        try container.encode(firstTeamPenaltiesScore, forKey: .firstTeamPenaltiesScore)
+        try container.encode(secondTeamPenaltiesScore, forKey: .secondTeamPenaltiesScore)
+        try container.encode(firstTeamScoreAuthors, forKey: .firstTeamScoreAuthors)
+        try container.encode(secondTeamScoreAuthors, forKey: .secondTeamScoreAuthors)
+        
+    }
+    
     // MARK: set functions
     func setId(id: Int64) {
         self.id = id
