@@ -113,8 +113,8 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
             cell.homeScore.text = String(currentUserBetsAndResults![indexPath.row].0.betValues.firstTeamScore)
             cell.visitorScore.text = String(currentUserBetsAndResults![indexPath.row].0.betValues.secondTeamScore)
 
-            cell.homeTeam.text = flagsEmoji[currentUserBetsAndResults![indexPath.row].0.match.firstTeam.name]
-            cell.visitorTeam.text = flagsEmoji[currentUserBetsAndResults![indexPath.row].0.match.secondTeam.name]
+            cell.homeTeam.text = flagsEmoji[currentUserBetsAndResults![indexPath.row].0.match.firstTeam.name.replacingOccurrences(of: " ", with: "")]
+            cell.visitorTeam.text = flagsEmoji[currentUserBetsAndResults![indexPath.row].0.match.secondTeam.name.replacingOccurrences(of: " ", with: "")]
             return cell
             
         case resultsTableView:
@@ -127,8 +127,8 @@ extension RankViewController: UITableViewDelegate, UITableViewDataSource {
                 cell.homeScore.text = ""
                 cell.visitorScore.text = ""
             }
-            cell.homeTeam.text = flagsEmoji[currentUserBetsAndResults![indexPath.row].0.match.firstTeam.name]
-            cell.visitorTeam.text = flagsEmoji[currentUserBetsAndResults![indexPath.row].0.match.secondTeam.name]
+            cell.homeTeam.text = flagsEmoji[currentUserBetsAndResults![indexPath.row].0.match.firstTeam.name.replacingOccurrences(of: " ", with: "")]
+            cell.visitorTeam.text = flagsEmoji[currentUserBetsAndResults![indexPath.row].0.match.secondTeam.name.replacingOccurrences(of: " ", with: "")]
             return cell
             
         case pointsTableView:
