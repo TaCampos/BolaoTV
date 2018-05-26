@@ -21,10 +21,16 @@ class RankViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpTableViews()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
         RankViewPresenter.allUsersHistoricAndRank { (usersHistoricAndRank) in
             self.usersHistoricAndRank = usersHistoricAndRank
+            self.classificationTableView.reloadData()
+            self.guessesTableView.reloadData()
+            self.pointsTableView.reloadData()
         }
-        setUpTableViews()
     }
 
     override func didReceiveMemoryWarning() {

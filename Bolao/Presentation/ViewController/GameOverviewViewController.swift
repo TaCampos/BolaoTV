@@ -80,29 +80,29 @@ class GameOverviewViewController: UIViewController {
         
     }
     
-//    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
-//        super.didUpdateFocus(in: context, with: coordinator)
-//        
-//        
-//        guard let nextFocusedView = context.nextFocusedView else {
-//            return
-//        }
-//        
-//        if userNamesAndBets.count > 0 {
-//            focusGuideTrailingToCollection.isActive = true
-//            focusGuideTrailingToSuperview.isActive = false
-//            
-//            if nextFocusedView == addButton {
-//                focusGuide.preferredFocusEnvironments = [betsCollectionView]
-//            } else {
-//                focusGuide.preferredFocusEnvironments = [addButton]
-//            }
-//        } else {
-//            focusGuideTrailingToCollection.isActive = false
-//            focusGuideTrailingToSuperview.isActive = true
-//            focusGuide.preferredFocusEnvironments = [addButton]
-//        }
-//    }
+    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+        super.didUpdateFocus(in: context, with: coordinator)
+
+
+        guard let nextFocusedView = context.nextFocusedView else {
+            return
+        }
+
+        if userNamesAndBets.count > 0 {
+            focusGuideTrailingToCollection.isActive = true
+            focusGuideTrailingToSuperview.isActive = false
+
+            if nextFocusedView == addButton {
+                focusGuide.preferredFocusEnvironments = [betsCollectionView]
+            } else {
+                focusGuide.preferredFocusEnvironments = [addButton]
+            }
+        } else {
+            focusGuideTrailingToCollection.isActive = false
+            focusGuideTrailingToSuperview.isActive = true
+            focusGuide.preferredFocusEnvironments = [addButton]
+        }
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? AddBetViewController {
