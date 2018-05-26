@@ -128,7 +128,7 @@
                                             <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.58999999999999997" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
-                                            <segue destination="68R-Qb-ap9" kind="show" id="wVl-Iv-hPv"/>
+                                            <action selector="addButtonTouched:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="G7t-tl-BNz"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Bet" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B0O-Yq-7Gg">
@@ -429,6 +429,7 @@ JUN</string>
                         <outlet property="secondTeamView" destination="XDN-iQ-ccx" id="5hi-gN-v79"/>
                         <outlet property="stadiumImage" destination="wbv-6E-noB" id="9Pt-QG-6iU"/>
                         <outlet property="stadiumName" destination="J9z-cX-C2b" id="ohy-z3-z2a"/>
+                        <segue destination="68R-Qb-ap9" kind="show" identifier="addBetSegue" id="IwQ-Di-foP"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
