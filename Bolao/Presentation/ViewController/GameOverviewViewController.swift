@@ -41,6 +41,8 @@ class GameOverviewViewController: UIViewController {
     private var ranking: [(String, Int)] = []
     
     var focusGuide: UIFocusGuide!
+    var focusGuideTrailingToSuperview: NSLayoutConstraint!
+    var focusGuideTrailingToCollection: NSLayoutConstraint!
     
     // dictionary with matches by day
     private var matchesByDay: [String : [Match]] = [:]
@@ -58,13 +60,49 @@ class GameOverviewViewController: UIViewController {
         focusGuide = UIFocusGuide()
         view.addLayoutGuide(focusGuide)
         
-        focusGuide.leadingAnchor.constraint(equalTo: addButton.trailingAnchor).isActive = true
-        focusGuide.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        focusGuide.topAnchor.constraint(equalTo: addButton.topAnchor).isActive = true
-        focusGuide.bottomAnchor.constraint(equalTo: addButton.bottomAnchor).isActive = true
+        NSLayoutConstraint(item: focusGuide, attribute: .leading, relatedBy: .equal, toItem: addButton, attribute: .trailing, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: focusGuide, attribute: .height, relatedBy: .equal, toItem: betsCollectionView, attribute: .height, multiplier: 1, constant: 0).isActive = true
+        NSLayoutConstraint(item: focusGuide, attribute: .bottom, relatedBy: .equal, toItem: gamesCollectionView, attribute: .top, multiplier: 1, constant: 0).isActive = true
         
-        focusGuide.preferredFocusedView = addButton
+        
+        focusGuideTrailingToSuperview = NSLayoutConstraint(item: focusGuide, attribute: .trailing, relatedBy: .equal, toItem: view, attribute: .trailing, multiplier: 1, constant: 0)
+        focusGuideTrailingToCollection = NSLayoutConstraint(item: focusGuide, attribute: .trailing, relatedBy: .equal, toItem: betsCollectionView, attribute: .leading, multiplier: 1, constant: 0)
+        
+        focusGuide.preferredFocusEnvironments = [addButton]
+
+        if userNamesAndBets.count > 0 {
+            focusGuideTrailingToCollection.isActive = true
+            focusGuideTrailingToSuperview.isActive = false
+        } else {
+            focusGuideTrailingToCollection.isActive = false
+            focusGuideTrailingToSuperview.isActive = true
+        }
+        
     }
+    
+//    override func didUpdateFocus(in context: UIFocusUpdateContext, with coordinator: UIFocusAnimationCoordinator) {
+//        super.didUpdateFocus(in: context, with: coordinator)
+//        
+//        
+//        guard let nextFocusedView = context.nextFocusedView else {
+//            return
+//        }
+//        
+//        if userNamesAndBets.count > 0 {
+//            focusGuideTrailingToCollection.isActive = true
+//            focusGuideTrailingToSuperview.isActive = false
+//            
+//            if nextFocusedView == addButton {
+//                focusGuide.preferredFocusEnvironments = [betsCollectionView]
+//            } else {
+//                focusGuide.preferredFocusEnvironments = [addButton]
+//            }
+//        } else {
+//            focusGuideTrailingToCollection.isActive = false
+//            focusGuideTrailingToSuperview.isActive = true
+//            focusGuide.preferredFocusEnvironments = [addButton]
+//        }
+//    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destinationVC = segue.destination as? AddBetViewController {
